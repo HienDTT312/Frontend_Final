@@ -15,7 +15,6 @@ function UserForm({ mode }) {
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const { username } = useParams();
-  const [departments, setDepartments] = useState([]);
   const [user, setUser] = useState(null);
   const [preview, setPreview] = useState();
   const [oldImage, setOldImage] = useState(false);
@@ -27,13 +26,6 @@ function UserForm({ mode }) {
       navigate("/dashboard", { replace: true });
     }
 
-    // Call Department
-    axiosClient
-      .get("http://localhost:3001/service1/department")
-      .then((response) => {
-        setDepartments(response.data.data);
-      })
-      .catch((err) => console.log(err));
     if (mode === "update") {
       axiosClient
         .get(`http://localhost:3001/service1/user/${username}`)
@@ -52,7 +44,6 @@ function UserForm({ mode }) {
         last_name: "",
         full_name: "",
         gender: "",
-        department_id: "",
         role_id: "",
         phone: "",
         avatar: "",
@@ -112,7 +103,6 @@ function UserForm({ mode }) {
       formData.append("gender", user.gender);
       formData.append("phone", user.phone);
       formData.append("role_id", +user.role_id);
-      formData.append("department_id", +user.department_id);
       formData.append("avatar", user.avatar);
       formData.append("old_image", oldImage);
 
@@ -133,7 +123,6 @@ function UserForm({ mode }) {
     formData.append("gender", user.gender);
     formData.append("phone", user.phone);
     formData.append("role_id", +user.role_id);
-    formData.append("department_id", +user.department_id);
     formData.append("avatar", user.avatar);
 
     return axiosClient
@@ -309,29 +298,6 @@ function UserForm({ mode }) {
             <option value="4">Manager</option>
             <option value="1">Staff</option>
             <option value="2">Admin</option>
-          </Select>
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="department" className={styles.label}>
-            Department
-          </label>
-          <Select
-            name="department_id"
-            defaultValue={user.department_id !== "" ? user.department_id : "0"}
-            id="department"
-            onChange={handleOnChange}
-          >
-            <option value="" disabled hidden>
-              Choose your department...
-            </option>
-            {departments.map((department, index) => (
-              <option
-                key={`${department.name} ${index}`}
-                value={department.department_id}
-              >
-                {department.department_name}
-              </option>
-            ))}
           </Select>
         </div>
         <div className={styles.formGroup}>
