@@ -1,0 +1,298 @@
+.header {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  width: 100%;
+}
+
+.bodyCard {
+  display: block;
+  margin-top: 40px;
+}
+
+.containerChart {
+  width: 100%;
+  min-height: 440px;
+}
+
+.columnChart,
+.pipeChart,
+.popular,
+.todo {
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 40px;
+  position: relative;
+}
+
+.popular {
+  overflow-x: scroll;
+}
+
+.columnChart::before {
+  content: "Department's product posting rate";
+  position: absolute;
+  font-size: 1.125rem;
+  color: #343a40;
+  text-transform: capitalize;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.pageHeader > span {
+  background-image: linear-gradient(
+    to right,
+    rgb(218, 140, 255),
+    rgb(154, 85, 255)
+  ) !important;
+  color: #fff;
+  display: block;
+  height: 36px;
+  width: 36px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  box-shadow: 0px 3px 8.3px 0.7px rgb(163 93 255 / 35%);
+}
+
+.pageHeader > h2 {
+  color: #343a40;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.dashboardItem {
+  border-radius: 4px;
+}
+
+.header .itemContainer:nth-child(1) > .dashboardItem {
+  background-image: linear-gradient(
+    to right,
+    rgb(255, 191, 150),
+    rgb(254, 112, 150)
+  ) !important;
+}
+
+.header .itemContainer:nth-child(2) > .dashboardItem {
+  background-image: linear-gradient(
+    to right,
+    rgb(144, 202, 249),
+    rgb(4, 126, 223) 99%
+  ) !important;
+}
+
+.header .itemContainer:nth-child(3) > .dashboardItem {
+  background-image: linear-gradient(
+    to right,
+    rgb(132, 217, 210),
+    rgb(7, 205, 174)
+  ) !important;
+}
+
+/* Recent */
+.recentContainer {
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.recentTitle {
+  color: #343a40;
+  margin-bottom: 0.75rem;
+  text-transform: capitalize;
+  font-size: 1.125rem;
+}
+
+.recentTime,
+.recentLeft,
+.recentRight {
+  display: flex;
+  align-items: center;
+}
+
+.recentList {
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.recentItem {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.recentItem > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.recentLeft {
+  margin-right: 10px;
+}
+
+.recentIcon,
+.recentText {
+  color: #9c9fa6;
+  font-size: 1rem;
+  margin-right: 6px;
+}
+
+.reactBtn {
+  cursor: pointer;
+}
+
+.heartActive {
+  color: #ed4956;
+}
+
+.cmt {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.cmt > img {
+  margin-right: 1rem;
+  display: block;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+}
+
+.cmtContent {
+  flex: 1;
+}
+
+.cmtContent > h5 {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.cmtContent > p {
+  color: #343a40;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* Check box */
+.todoForm {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.taskItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 0.9375rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #ebedf2;
+  align-items: center;
+}
+
+.checkLabel {
+  display: block;
+  margin-left: 1.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.checkInput {
+  position: absolute;
+  top: 10px;
+  width: 22px;
+  height: 22px;
+  left: 0;
+  margin-left: 0;
+  margin-top: 0;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.inputHelper::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  border: 2px solid #b66dff;
+  transition: 250ms ease;
+  position: absolute;
+  top: 8px;
+  left: 0;
+}
+
+.inputHelper::after {
+  content: "\2713";
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  transition: all;
+  opacity: 0;
+  transform: scale(0);
+  position: absolute;
+  top: 8px;
+  left: 0;
+}
+
+.checkInput:checked + .inputHelper::before {
+  /* background: linear-gradient(to right, #da8cff, #9a55ff); */
+  background-color: #b66dff;
+}
+
+.checkInput:checked + .inputHelper::after {
+  width: 18px;
+  padding: 2px;
+  opacity: 1;
+  line-height: 18px;
+  transform: scale(1);
+}
+
+.taskName {
+  flex: 1;
+}
+
+.taskName.active {
+  text-decoration: line-through;
+}
+
+.taskRemoveBtn {
+  cursor: pointer;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  color: #c3bdbd;
+  transition: 0.4s ease;
+}
+
+.taskRemoveBtn:hover {
+  transform: none;
+  color: #b66dff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+  .itemContainer,
+  .containerChart,
+  .todo {
+    margin-top: 20px;
+  }
+
+  .recentList {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

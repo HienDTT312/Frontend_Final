@@ -1,0 +1,45 @@
+.container {
+  overflow-x: scroll;
+  background-color: #fff;
+  padding: 2.5rem 2.5rem;
+  width: 100%;
+  border: 0;
+  border-radius: 0.3125rem;
+}
+
+.iconAction {
+  font-size: 20px;
+  color: #bba8bff5;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.iconAction:hover {
+  transform: translateY(-3px);
+  color: #b66dff;
+}
+
+.iconAction + .iconAction {
+  margin-left: 10px;
+}
+
+.badgeActive,
+.badgeDisabled {
+  font-size: 12px;
+  color: #fff;
+  border-radius: 2px;
+  font-weight: initial;
+  line-height: 1;
+  padding: 0.3rem 0.6rem;
+}
+
+.badgeDisabled {
+  border: 1px solid #fe7c96;
+  background-color: #fe7c96;
+}
+
+.badgeActive {
+  border: 1px solid #198ae3;
+  background-color: #198ae3;
+}

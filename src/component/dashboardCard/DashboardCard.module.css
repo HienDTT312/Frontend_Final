@@ -1,0 +1,41 @@
+.body {
+  padding: 2.5rem;
+  flex: 1 1 auto;
+  min-height: 1px;
+  position: relative;
+}
+
+.body > .bgBubble {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 1.125rem;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.icon {
+  font-size: 1.25rem;
+}
+
+.data {
+  font-size: 1.88rem;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 3rem;
+  font-weight: 500;
+}
+
+.extra {
+  font-size: 0.935rem;
+  color: #fff;
+  font-weight: 500;
+}

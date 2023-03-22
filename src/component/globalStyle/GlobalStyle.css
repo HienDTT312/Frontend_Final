@@ -1,0 +1,366 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-size: 16px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.grid {
+  width: 100%;
+  display: block;
+  padding: 0;
+}
+
+.grid.wide {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -4px;
+  margin-right: -4px;
+}
+
+.row.no-gutters {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row.no-gutters .col {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.col {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.sm0 {
+  display: none;
+}
+
+.sm1 {
+  flex: 0 0 8.33333%;
+  max-width: 8.33333%;
+}
+
+.sm2 {
+  flex: 0 0 16.66667%;
+  max-width: 16.66667%;
+}
+
+.sm3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.sm4 {
+  flex: 0 0 33.33333%;
+  max-width: 33.33333%;
+}
+
+.sm5 {
+  flex: 0 0 41.66667%;
+  max-width: 41.66667%;
+}
+
+.sm6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.sm7 {
+  flex: 0 0 58.33333%;
+  max-width: 58.33333%;
+}
+
+.sm8 {
+  flex: 0 0 66.66667%;
+  max-width: 66.66667%;
+}
+
+.sm9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.sm10 {
+  flex: 0 0 83.33333%;
+  max-width: 83.33333%;
+}
+
+.sm11 {
+  flex: 0 0 91.66667%;
+  max-width: 91.66667%;
+}
+
+.sm12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* Table and PC low resolution */
+@media (min-width: 740px) and (max-width: 1023px) {
+  .wide {
+    width: 644px;
+  }
+
+  .row {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+
+  .col {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .md1,
+  .md2,
+  .md3,
+  .md4,
+  .md5,
+  .md6,
+  .md7,
+  .md8,
+  .md9,
+  .md10,
+  .md11,
+  .md12 {
+    display: block;
+  }
+
+  .md0 {
+    display: none;
+  }
+  .md1 {
+    flex: 0 0 8.33333%;
+    max-width: 8.33333%;
+  }
+
+  .md2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+  }
+
+  .md3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .md4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+
+  .md5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%;
+  }
+
+  .md6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .md7 {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%;
+  }
+
+  .md8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+  }
+
+  .md9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+
+  .md10 {
+    flex: 0 0 83.33333%;
+    max-width: 83.33333%;
+  }
+
+  .md11 {
+    flex: 0 0 91.66667%;
+    max-width: 91.66667%;
+  }
+
+  .md12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Pc medium resolution */
+@media (min-width: 1024px) and (max-width: 1239px) {
+  .wide {
+    width: 984px;
+  }
+
+  .row {
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+
+  .row.sm-gutter {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+
+  .col {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .row.sm-gutter .col {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+/* PC high resolution */
+@media (min-width: 1024px) {
+  .lg1,
+  .lg2,
+  .lg3,
+  .lg4,
+  .lg5,
+  .lg6,
+  .lg7,
+  .lg8,
+  .lg9,
+  .lg10,
+  .lg11,
+  .lg12 {
+    display: block;
+  }
+
+  .lg0 {
+    display: none;
+  }
+
+  .lg1 {
+    flex: 0 0 8.33333%;
+    max-width: 8.33333%;
+  }
+
+  .lg2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+  }
+
+  .lg2-4 {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+
+  .lg3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .lg4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+
+  .lg5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%;
+  }
+
+  .lg6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .lg7 {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%;
+  }
+
+  .lg8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+  }
+
+  .lg9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+
+  .lg10 {
+    flex: 0 0 83.33333%;
+    max-width: 83.33333%;
+  }
+
+  .lg11 {
+    flex: 0 0 91.66667%;
+    max-width: 91.66667%;
+  }
+
+  .lg12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1240px) {
+  .row {
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+
+  .col {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .row.sm-gutter {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+
+  .row.sm-gutter .col {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .row.big-gutter {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
+  .row.big-gutter .col {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* Override CSS of Datepicker */
+/* .cssCustom.e-input-group:not(.e-float-icon-left):not(.e-float-input)::before, */
+.cssCustom.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::before,
+.cssCustom.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::after {
+  background-color: #b66dff;
+}
+
+.cssCustom.e-date-wrapper span.e-input-group-icon.e-date-icon.e-icons.e-active {
+  color: #b66dff;
+}

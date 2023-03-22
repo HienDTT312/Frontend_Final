@@ -1,0 +1,146 @@
+:root {
+  --btn--primary: #4628ff;
+  --btn--warning: #ffd028;
+  --btn--danger: #eb3f27;
+  --btn--success: #75fa83;
+  --btn--white: #fdfdfd;
+  --btn--dark: #181717;
+  --btn--yellow-0: #fb771a;
+  --btn--gray-0: #c1c1c1;
+  --btn--purple-0: #da8cff;
+  --btn--purple-1: #9a55ff;
+}
+
+.btn {
+  font-family: "Roboto", sans-serif;
+  border-radius: 3px;
+  font-size: 0.875rem;
+  user-select: none;
+  text-align: center;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btnPrimarySolid {
+  background-color: var(--btn--primary);
+  color: var(--btn--white);
+  border: none;
+}
+
+.btnWarningSolid {
+  background-color: var(--btn--warning);
+  color: var(--btn--white);
+  border: none;
+}
+
+.btnDangerSolid {
+  background-color: var(--btn--danger);
+  color: var(--btn--white);
+  border: none;
+}
+
+.btnSuccessSolid {
+  background-color: var(--btn--success);
+  color: var(--btn--white);
+  border: none;
+}
+
+.btnYellowSolid {
+  background-color: var(--btn--yellow-0);
+  color: var(--btn--white);
+  border: none;
+}
+
+.btnGraySolid {
+  background-color: var(--btn--gray-0);
+  color: var(--btn--white);
+  border: none;
+}
+
+.btnPurpleSolid {
+  background: linear-gradient(
+    to right,
+    var(--btn--purple-0),
+    var(--btn--purple-1)
+  );
+  color: var(--btn--white);
+  border: none;
+}
+
+.btnPrimarySolidOutline {
+  background-color: var(--btn--primary);
+  color: var(--btn--white);
+  border: 2px solid var(--btn--primary);
+}
+
+.btnWarningSolidOutline {
+  background-color: var(--btn--warning);
+  color: var(--btn--white);
+  border: 2px solid var(--btn--warning);
+}
+
+.btnDangerSolidOutline {
+  background-color: var(--btn--danger);
+  color: var(--btn--white);
+  border: 2px solid var(--btn--danger);
+}
+
+.btnSuccessSolidOutline {
+  background-color: var(--btn--success);
+  color: var(--btn--white);
+  border: 2px solid var(--btn--success);
+}
+
+.btnYellowSolidOutline {
+  background-color: var(--btn--yellow-0);
+  color: var(--btn--white);
+  border: 2px solid var(--btn--yellow-0);
+}
+
+.btnGraySolidOutline {
+  background-color: var(--btn--gray-0);
+  color: var(--btn--white);
+  border: 2px solid var(--btn--gray-0);
+}
+
+.btnPurpleSolidOutline {
+  background: linear-gradient(
+    to right,
+    var(--btn--purple-0),
+    var(--btn--purple-1)
+  );
+  color: var(--btn--white);
+  border: 2px solid var(--btn--purple-0);
+}
+
+.btnSmall {
+  padding: 10px 20px;
+  font-size: 12px;
+}
+
+.btnMedium {
+  padding: 12px 30px;
+  font-size: 14px;
+}
+
+.btnLarge {
+  padding: 14px 35px;
+  font-size: 16px;
+}
+
+.btnExLarge {
+  padding: 18px 0;
+  text-align: center;
+  width: 100%;
+  font-size: 18px;
+}
+
+.btnSecondary {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+}

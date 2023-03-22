@@ -1,0 +1,33 @@
+.container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagiBtn {
+  display: flex;
+  justify-content: center;
+  margin-right: 24px;
+  padding: 4px;
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 1.25rem;
+}
+
+.pagiIcon {
+  transition: 0.4s ease;
+}
+
+.pagiBtn:disabled {
+  cursor: default;
+}
+
+.pagiBtn:disabled:hover {
+  color: #1010104d;
+}
+
+.pagiBtn:hover {
+  transform: none;
+  color: #b66dff;
+}

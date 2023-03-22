@@ -1,0 +1,154 @@
+.container {
+  padding: 0 40px;
+}
+
+.item {
+  padding: 12px 0;
+  width: auto;
+  display: flex;
+  transition: 0.4s ease;
+}
+
+.item:hover {
+  background-color: #eee;
+}
+
+.item:hover .deleteIcon {
+  opacity: 1;
+  visibility: visible;
+}
+
+.imgContainer {
+  width: 60px;
+  display: block;
+  margin-right: 18px;
+}
+
+.imgContainer img {
+  height: 60px;
+  width: 60px;
+  display: block;
+  border-radius: 50%;
+}
+
+.content {
+  flex: 1;
+  color: #262626;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+
+.content .name,
+.content .commentContent {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.content .name {
+  display: flex;
+  align-items: center;
+  /* cursor: pointer; */
+}
+
+.content .name .mask {
+  margin-left: 6px;
+}
+
+.content .commentContent {
+  font-weight: 400;
+}
+
+.deleteIcon {
+  font-size: 26px;
+  transition: 0.4s ease;
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  color: #8e8e8e;
+}
+
+.deleteIcon:hover {
+  color: #b66dff;
+}
+
+.date {
+  color: #8e8e8e;
+  font-size: 12px;
+}
+
+/* Input comment */
+.inputContainer {
+  border-top: 1px solid #dbdbdb;
+  margin-top: 20px;
+  padding-top: 20px;
+  display: flex;
+}
+
+.inputContent {
+  flex: 1;
+}
+
+.inputComment {
+  border: none;
+  border-radius: 4px;
+  height: 80px;
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  padding-right: 30px;
+  padding-top: 4px;
+  font-weight: 400;
+  color: #262626;
+  outline: none;
+  resize: none;
+  font-family: "Ubuntu", sans-serif;
+  line-height: 1.8;
+}
+
+.inputComment::placeholder {
+  color: #495057;
+}
+
+.switchContainer {
+  display: flex;
+  align-items: center;
+}
+
+.switchContainer > span {
+  margin-right: 8px;
+}
+
+.imgContainer {
+  display: flex;
+}
+
+.avtComment {
+  border-radius: 50%;
+}
+
+.submitIcon {
+  font-size: 30px;
+  color: #b66dff;
+  display: inline-block;
+  height: fit-content;
+  border: none;
+  background: transparent;
+  margin-top: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+  .container {
+    padding: 0;
+  }
+
+  .imgContainer img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .content .commentContent {
+    font-size: 0.875rem;
+  }
+}

@@ -1,0 +1,100 @@
+.formControl {
+  /* border: none;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+  border-radius: 4px;
+  height: 54px;
+  background: #fff;
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  outline: none; */
+  border: 1px solid #ebedf2;
+  font-size: 0.875rem;
+  display: block;
+  width: 100%;
+  height: 2.875rem;
+  padding: 0.94rem 1.374rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #495057;
+  background-clip: padding-box;
+  border-radius: 2px;
+  outline: none;
+  transition: all 0.6s ease;
+}
+
+.formControl[type="text"]:disabled,
+.formControl[type="number"]:disabled {
+  background: #dddddd;
+}
+
+/* Checkbox */
+.checkboxItems {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 48px;
+}
+
+/* Hide the default checkbox */
+/* input[type="checkbox"] {
+  visibility: hidden;
+} */
+
+/* Creating a custom checkbox based on demand */
+.mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 3px;
+  background-color: #e6e6e6;
+  /* padding-left: 50px; */
+}
+
+/* Specify the background color to be shown when hovering over checkbox */
+.checkboxItems:hover input ~ .mark {
+  background-color: #cccccc;
+}
+
+/* Specify the background color to be shown when checkbox is active */
+/* .checkboxItems input:active ~ .mark {
+  background-color: red;
+} */
+
+/* Specify the background color to be shown when checkbox is checked */
+.checkboxItems input:checked ~ .mark {
+  background-color: #fb771a;
+}
+
+/* Checkmark to be shown in checkbox */
+/* It is not be shown when not checked */
+.mark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Display checkmark when checked */
+.checkboxItems input:checked ~ .mark:after {
+  display: block;
+}
+
+/* Styling the checkmark using webkit */
+/* Rotated the rectangle by 45 degree and showing only two border to make it look like a tickmark */
+/* .checkboxItems .mark:after {
+  left: 8px;
+  bottom: 5px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+} */
