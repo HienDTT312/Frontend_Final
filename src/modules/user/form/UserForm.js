@@ -305,8 +305,8 @@ function UserForm({ mode }) {
             <option value="" disabled hidden>
               Choose your role...
             </option>
-            <option value="3">Quality Assurance Coordinator</option>
-            <option value="4">Quality Assurance Manager</option>
+            <option value="3">Sale Manager</option>
+            <option value="4">Manager</option>
             <option value="1">Staff</option>
             <option value="2">Admin</option>
           </Select>

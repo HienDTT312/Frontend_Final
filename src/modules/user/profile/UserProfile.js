@@ -379,8 +379,8 @@ function UserProfile() {
                   <option value="" disabled hidden>
                     Choose your role...
                   </option>
-                  <option value="1">Quality Assurance Coordinator</option>
-                  <option value="2">Quality Assurance Manager</option>
+                  <option value="1">Sale Manager</option>
+                  <option value="2">Manager</option>
                   <option value="3">Staff</option>
                   <option value="4">Admin</option>
                 </Select>
