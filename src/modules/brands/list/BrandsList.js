@@ -30,7 +30,7 @@ function BrandsList() {
   }
 
   useEffect(() => {
-    if (currentUser.role_id === ROLES.QA_COORDINATOR) {
+    if (currentUser.role_id === ROLES.SALE_MANAGER) {
       alert("You cannot access this page");
       navigate("/dashboard", { replace: true });
     }
