@@ -123,13 +123,11 @@ function ProductsList() {
       style={{ backgroundColor: (index + 1) % 2 !== 0 ? "#f2edf3" : "#fff" }}
       key={`${product.product_id} - ${index}`}
     >
-      <td>{product.full_name}</td>
       <td>{product.title}</td>
       <td>{product.description}</td>
-      <td>{product.department_name}</td>
+      <td>{product.supplier_name}</td>
       <td>{product.category_name}</td>
       <td>{product.brand_name}</td>
-      <td>{product.status}</td>
       <td>
         <Link
           className={styles.iconAction}

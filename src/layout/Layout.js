@@ -23,6 +23,9 @@ import Aggrement from "../pages/aggrement/Aggrement";
 import CreateAggrement from "../pages/aggrement/create/CreateAggrement";
 import UpdateAggrement from "../pages/aggrement/update/UpdateAggrement";
 import checkRole from "../helpers/checkRole";
+import CreateSupplier from "../pages/supplier/create/CreateSupplier";
+import UpdateSupplier from "../pages/supplier/update/UpdateSupplier";
+import Supplier from "../pages/supplier/Supplier";
 
 export default function Layout() {
   // const renderRoutes = (routes) => {
@@ -73,6 +76,13 @@ export default function Layout() {
               </Route>
               <Route path="create" element={<CreateBrand />} />
               <Route path="view" element={<Brand />} />
+            </Route>
+            <Route path="/suppliers">
+              <Route path="update">
+                <Route path=":brandID" element={<UpdateSupplier />} />
+              </Route>
+              <Route path="create" element={<CreateSupplier />} />
+              <Route path="view" element={<Supplier />} />
             </Route>
             <Route path="/categories">
               <Route path="update">

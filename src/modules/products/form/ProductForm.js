@@ -24,6 +24,8 @@ function ProductForm({ mode }) {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
   const [agreements, setAggrements] = useState([]);
   const [newDocuments, setNewDocuments] = useState([]);
   const [oldDocsLength, setOldDocsLength] = useState(0);
@@ -40,6 +42,20 @@ function ProductForm({ mode }) {
     setCategories(res.data.data);
   }
 
+  async function getBrands() {
+    const res = await axiosClient.get(
+      `http://localhost:3001/service1/brand`
+    );
+    setBrands(res.data.data);
+  }
+
+  async function getSuppliers() {
+    const res = await axiosClient.get(
+      `http://localhost:3001/service1/supplier`
+    );
+    setSuppliers(res.data.data);
+  }
+
   async function getAggrements() {
     const res = await axiosClient.get(
       "http://localhost:3001/service1/aggrement"
@@ -50,7 +66,8 @@ function ProductForm({ mode }) {
   useEffect(() => {
     getAggrements();
     getCategories();
-
+    getBrands();
+    getSuppliers();
     async function getOneProduct() {
       const res = await axiosClient.get(
         `http://localhost:3001/service1/product/${productId}`
@@ -73,6 +90,8 @@ function ProductForm({ mode }) {
         documents: [],
         description: "",
         category_id: "",
+        supplier_name: "",
+        brand_name: "",
       });
     }
   }, []);
@@ -230,6 +249,7 @@ function ProductForm({ mode }) {
   };
 
   const handleOnChange = (target) => {
+    console.log('target', target.name + 'value', target.value)
     setProduct({ ...product, [target.name]: target.value });
   };
 
@@ -253,6 +273,8 @@ function ProductForm({ mode }) {
       formData.append("documents", doc);
     }
     formData.append("description", product.description);
+    formData.append("brand_name", product.brand_name);
+    formData.append("supplier_name", product.supplier_name);
     formData.append("category_id", +product.category_id);
     if (mode === "create") {
       axiosClient
@@ -329,6 +351,54 @@ function ProductForm({ mode }) {
                 value={category.category_id}
               >
                 {category.category_name}
+              </option>
+            ))}
+          </Select>
+        </div>
+         {/* Brand */}
+         <div className={styles.formGroup}>
+          <label htmlFor="brand" className={styles.label}>
+            Brand
+          </label>
+          <Select
+            name="brand_name"
+            defaultValue={product.brand_name !== "" ? product.brand_name : ""}
+            id="brand"
+            onChange={handleOnChange}
+          >
+            <option value="" disabled>
+              Choose your brand...
+            </option>
+            {brands.map((brand, index) => (
+              <option
+                key={`${brand.brand_id} ${index}`}
+                value={brand.brand_name}
+              >
+                {brand.brand_name}
+              </option>
+            ))}
+          </Select>
+        </div>
+        {/* Brand */}
+        <div className={styles.formGroup}>
+          <label htmlFor="supplier" className={styles.label}>
+            Supplier
+          </label>
+          <Select
+            name="supplier_name"
+            defaultValue={product.supplier_name !== "" ? product.supplier_name : ""}
+            id="supplier"
+            onChange={handleOnChange}
+          >
+            <option value="" disabled>
+              Choose your supplier...
+            </option>
+            {suppliers.map((supplier, index) => (
+              <option
+                key={`${supplier.supplier_id} ${index}`}
+                value={supplier.supplier_name}
+              >
+                {supplier.supplier_name}
               </option>
             ))}
           </Select>

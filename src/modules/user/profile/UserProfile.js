@@ -6,10 +6,6 @@ import { AiFillHeart } from "react-icons/ai";
 import { BsInstagram } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-import hoaAn from "../../../assets/user/avatar/AnThieuNang.jpg";
-import quocAnh from "../../../assets/user/avatar/ToiTe.jpg";
-import tanSang from "../../../assets/user/avatar/ChuaTeVayNen.jpg";
-import tuanVu from "../../../assets/user/avatar/ChuaTeTrangDiem.jpg";
 import vuNam from "../../../assets/user/avatar/vuNam.jpeg";
 import user6 from "../../../assets/user/avatar/user6.jpg";
 import user7 from "../../../assets/user/avatar/user7.jpg";
@@ -47,40 +43,40 @@ const nav = [
 
 const previewFriend = [
   {
-    name: "Hòa An",
-    path: hoaAn,
+    name: "Meo",
+    path: vuNam,
   },
   {
-    name: "Quốc Anh",
-    path: quocAnh,
+    name: "Hien",
+    path: vuNam,
   },
   {
-    name: "Nguyễn Tấn Sang",
-    path: tanSang,
+    name: "Hien",
+    path: vuNam,
   },
   {
-    name: "Phạm Tuấn Vũ",
-    path: tuanVu,
+    name: "Hien",
+    path: vuNam,
   },
   {
     name: "Vũ Nam",
     path: vuNam,
   },
   {
-    name: "Văn Sang",
-    path: user6,
+    name: "Hien",
+    path: vuNam,
   },
   {
-    name: "Văn Vũ",
-    path: user7,
+    name: "Hien",
+    path: vuNam,
   },
   {
     name: "Thị Anh",
-    path: user8,
+    path: vuNam,
   },
   {
-    name: "Thị An",
-    path: user9,
+    name: "Hien",
+    path: vuNam,
   },
 ];
 

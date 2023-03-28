@@ -3,17 +3,17 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 
-import styles from "./BrandForm.module.css";
+import styles from "./SupplierForm.module.css";
 import Input from "../../../component/input/Input";
 import Button from "../../../component/button/Button";
 import Spinner from "../../../component/spinner/Spinner";
 import Select from "../../../component/select/Select";
 import { ROLES } from "../../../constants";
 
-function BrandForm({ mode }) {
+function SupplierForm({ mode }) {
   const navigate = useNavigate();
-  const { brandID } = useParams();
-  const [brand, setBrand] = useState(null);
+  const { supplierID } = useParams();
+  const [supplier, setSupplier] = useState(null);
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -25,17 +25,17 @@ function BrandForm({ mode }) {
     }
     if (mode === "update") {
       axiosClient
-        .get(`http://localhost:3001/service1/brand/${brandID}`)
+        .get(`http://localhost:3001/service1/supplier/${supplierID}`)
         .then((response) => {
-          setBrand({ ...response.data.data });
+          setSupplier({ ...response.data.data });
         })
         .catch((err) => console.log(err));
     } else if (mode === "create") {
-      setBrand({
-        brand_name: "",
-        brand_number: "",
-        brand_address: "",
-        brand_manager: "",
+      setSupplier({
+        supplier_name: "",
+        supplier_number: "",
+        supplier_address: "",
+        supplier_manager: "",
         status: "",
       });
     }
@@ -64,7 +64,7 @@ function BrandForm({ mode }) {
   };
 
   const handleOnChange = (target) => {
-    setBrand({ ...brand, [target.name]: target.value });
+    setSupplier({ ...supplier, [target.name]: target.value });
   };
 
 
@@ -73,36 +73,36 @@ function BrandForm({ mode }) {
     e.preventDefault();
     if (mode === "update") {
       return axiosClient
-        .put(`http://localhost:3001/service1/brand`, {
-          brand_name: brand.brand_name,
-          status: brand.brand_status,
-          phone_number: brand.brand_number,
-          brand_address: brand.brand_address,
-          manager: brand.brand_manager,
+        .put(`http://localhost:3001/service1/supplier`, {
+          supplier_name: supplier.supplier_name,
+          status: supplier.supplier_status,
+          phone_number: supplier.supplier_number,
+          supplier_address: supplier.supplier_address,
+          manager: supplier.supplier_manager,
         })
         .then((response) => {
           console.log(response.data);
-          navigate("/brands/view", { replace: true });
+          navigate("/suppliers/view", { replace: true });
         })
         .catch((err) => console.log(err));
     }
 
     return axiosClient
-      .post(`http://localhost:3001/service1/brand`, {
-        brand_name: brand.brand_name,
-        status: brand.brand_status,
-        phone_number: brand.brand_number,
-        brand_address: brand.brand_address,
-        manager: brand.brand_manager,
+      .post(`http://localhost:3001/service1/supplier`, {
+        supplier_name: supplier.supplier_name,
+        status: supplier.supplier_status,
+        phone_number: supplier.supplier_number,
+        supplier_address: supplier.supplier_address,
+        manager: supplier.supplier_manager,
       })
       .then((response) => {
         console.log(response.data);
-        navigate("/brands/view", { replace: true });
+        navigate("/suppliers/view", { replace: true });
       })
       .catch((err) => console.log(err));
   };
 
-  if (!brand) {
+  if (!supplier) {
     return (
       <div>
         <Spinner />
@@ -113,38 +113,38 @@ function BrandForm({ mode }) {
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.title}>
-        {mode === "update" ? `Update Brand` : `Create Brand`}
+        {mode === "update" ? `Update Supplier` : `Create Supplier`}
       </h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
           <label htmlFor="name" className={styles.label}>
-            Brand Name
+            Supplier Name
           </label>
           <Input
             onChange={handleOnChange}
             config={configInput(
               "name",
               styles.formInput,
-              "brand_name",
+              "supplier_name",
               "text",
-              brand.name,
-              "Your brand name"
+              supplier.name,
+              "Your supplier name"
             )}
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="brand_address" className={styles.label}>
-            Brand Address
+          <label htmlFor="supplier_address" className={styles.label}>
+            Supplier Address
           </label>
           <Input
             onChange={handleOnChange}
             config={configInput(
               "address",
               styles.formInput,
-              "brand_address",
+              "supplier_address",
               "text",
-              brand.brand_address,
-              "Your brand address"
+              supplier.supplier_address,
+              "Your supplier address"
             )}
           />
         </div>
@@ -157,10 +157,10 @@ function BrandForm({ mode }) {
             config={configInput(
               "phone",
               styles.formInput,
-              "brand_number",
+              "supplier_number",
               "text",
-              brand.brand_number,
-              "Your brand number"
+              supplier.supplier_number,
+              "Your supplier number"
             )}
           />
         </div>
@@ -173,10 +173,10 @@ function BrandForm({ mode }) {
             config={configInput(
               "manager",
               styles.formInput,
-              "brand_manager",
+              "supplier_manager",
               "text",
-              brand.brand_manager,
-              "Your brand manager's name"
+              supplier.supplier_manager,
+              "Your supplier manager's name"
             )}
           />
         </div>
@@ -189,10 +189,10 @@ function BrandForm({ mode }) {
             config={configInput(
               "status",
               styles.formInput,
-              "brand_status",
+              "supplier_status",
               "text",
-              brand.brand_status,
-              "Your brand status"
+              supplier.supplier_status,
+              "Your supplier status"
             )}
           />
         </div>
@@ -208,4 +208,4 @@ function BrandForm({ mode }) {
   );
 }
 
-export default BrandForm;
+export default SupplierForm;

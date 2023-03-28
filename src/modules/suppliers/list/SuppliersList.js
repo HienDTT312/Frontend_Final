@@ -4,17 +4,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { BiEditAlt } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-import styles from "./BrandsList.module.css";
+import styles from "./SuppliersList.module.css";
 import Popup from "../../../component/popup/Popup";
 import Table from "../../../component/table/Table";
-import BrandTableHead from "./table-head";
+import SupplierTableHead from "./table-head";
 import { ROLES } from "../../../constants";
 import Pagination from "../../../component/pagination/Pagination";
 
-function BrandsList() {
-  const [brandId, setBrandId] = useState("");
+function SuppliersList() {
+  const [supplierId, setSupplierId] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [brands, setBrands] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const navigate = useNavigate();
   const [pagination, setPagination] = useState({
@@ -24,9 +24,9 @@ function BrandsList() {
   });
   const [seperatePage, setSeperatePage] = useState([]);
 
-  async function getBrands() {
-    let res = await axiosClient.get("http://localhost:3001/service1/brand");
-    setBrands(res.data.data);
+  async function getSuppliers() {
+    let res = await axiosClient.get("http://localhost:3001/service1/supplier");
+    setSuppliers(res.data.data);
   }
 
   useEffect(() => {
@@ -34,26 +34,26 @@ function BrandsList() {
       alert("You cannot access this page");
       navigate("/dashboard", { replace: true });
     }
-    getBrands();
+    getSuppliers();
   }, []);
 
   useEffect(() => {
     setPagination((pagination) => ({
       ...pagination,
-      totalRows: brands.length,
+      totalRows: suppliers.length,
     }));
-  }, [brands.length]);
+  }, [suppliers.length]);
 
   useEffect(() => {
     setSeperatePage(
-      brands.slice(
+      suppliers.slice(
         (pagination.page - 1) * pagination.limit,
-        pagination.page * pagination.limit > brands.length
+        pagination.page * pagination.limit > suppliers.length
           ? undefined
           : pagination.page * pagination.limit
       )
     );
-  }, [brands, pagination.limit, pagination.page]);
+  }, [suppliers, pagination.limit, pagination.page]);
 
   const handlePageChange = (newPage) => {
     setPagination({ ...pagination, page: newPage });
@@ -61,22 +61,22 @@ function BrandsList() {
 
   const handleClickClose = () => setIsOpen(false);
 
-  const onClickDelete = (deleteBrandId) => {
+  const onClickDelete = (deleteSupplierId) => {
     setIsOpen(true);
-    setBrandId(deleteBrandId);
+    setSupplierId(deleteSupplierId);
   };
 
-  const handleClickDeleteBrand = (deleteBrandId) => {
+  const handleClickDeleteSupplier = (deleteSupplierId) => {
     axiosClient
-      .delete(`http://localhost:3001/service1/brand/${deleteBrandId}`)
+      .delete(`http://localhost:3001/service1/supplier/${deleteSupplierId}`)
       .then((response) => {
         console.log(response.data);
-        getBrands();
+        getSuppliers();
       })
       .catch((err) => console.log(err));
   };
 
-  const renderRows = (brand, index, onClickDelete) => {
+  const renderRows = (supplier, index, onClickDelete) => {
     const convertFormat = (date) => {
       const newDate = new Date(date);
       return [
@@ -89,33 +89,33 @@ function BrandsList() {
     return (
       <tr
         style={{ backgroundColor: (index + 1) % 2 !== 0 ? "#f2edf3" : "#fff" }}
-        key={`${brand.brand_id} - ${index}`}
+        key={`${supplier.supplier_id} - ${index}`}
       >
-        <td>{brand.brand_name}</td>
-        <td>{brand.brand_address}</td>
-        <td>{brand.manager}</td>
-        <td>{brand.status}</td>
-        <td>{brand.phone_number}</td>
-        <td>{brand.created_date}</td>
-        <td>{brand.updated_date}</td>
-        {/* <td>{brand.status}</td> */}
+        <td>{supplier.supplier_name}</td>
+        <td>{supplier.supplier_address}</td>
+        <td>{supplier.manager}</td>
+        <td>{supplier.status}</td>
+        <td>{supplier.phone_number}</td>
+        <td>{supplier.created_date}</td>
+        <td>{supplier.updated_date}</td>
+        {/* <td>{supplier.status}</td> */}
         <td>
           <Link
             className={styles.iconAction}
-            to={`/brands/update/${brand.brand_id}`}
+            to={`/suppliers/update/${supplier.supplier_id}`}
           >
             <BiEditAlt />
           </Link>
           <RiDeleteBin5Line
             className={styles.iconAction}
-            onClick={() => onClickDelete(brand.brand_id)}
+            onClick={() => onClickDelete(supplier.supplier_id)}
           />
         </td>
       </tr>
     );
   };
 
-  if (brands.length === 0) {
+  if (suppliers.length === 0) {
     return (
       <div>
         <Table loading={true} />
@@ -127,11 +127,11 @@ function BrandsList() {
     <div className={styles.container}>
       <Table
         loading={false}
-        head={<BrandTableHead />}
+        head={<SupplierTableHead />}
         renderRows={renderRows}
         onClickDeleteButton={onClickDelete}
         data={seperatePage}
-        title={"Brand List"}
+        title={"Supplier List"}
       />
       <Pagination pagination={pagination} onPageChage={handlePageChange} />
 
@@ -140,10 +140,10 @@ function BrandsList() {
         title="Confirm Information"
         message="Are you sure to delete this record?"
         onClose={handleClickClose}
-        onConfirm={() => handleClickDeleteBrand(brandId)}
+        onConfirm={() => handleClickDeleteSupplier(supplierId)}
       />
     </div>
   );
 }
 
-export default BrandsList;
+export default SuppliersList;

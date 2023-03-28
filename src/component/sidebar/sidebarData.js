@@ -32,6 +32,23 @@ const SidebarAdmin = [
     ],
   },
   {
+    title: "Supplier",
+    path: "/suppliers",
+    icon: <BsCalendar2Date />,
+    iconClosed: <RiArrowDownSFill />,
+    iconOpened: <RiArrowUpSFill />,
+    subNav: [
+      {
+        title: "View",
+        path: "/suppliers/view",
+      },
+      {
+        title: "Create",
+        path: "/suppliers/create",
+      },
+    ],
+  },
+  {
     title: "Category",
     path: "/categories",
     icon: <BiCategoryAlt />,
@@ -112,6 +129,13 @@ const SidebarQAM = [
   {
     title: "Brand",
     path: "/brands/view",
+    icon: <BsCalendar2Date />,
+    iconClosed: <RiArrowDownSFill />,
+    iconOpened: <RiArrowUpSFill />,
+  },
+  {
+    title: "Supplier",
+    path: "/suppliers/view",
     icon: <BsCalendar2Date />,
     iconClosed: <RiArrowDownSFill />,
     iconOpened: <RiArrowUpSFill />,
