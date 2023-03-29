@@ -26,6 +26,10 @@ import checkRole from "../helpers/checkRole";
 import CreateSupplier from "../pages/supplier/create/CreateSupplier";
 import UpdateSupplier from "../pages/supplier/update/UpdateSupplier";
 import Supplier from "../pages/supplier/Supplier";
+import UpdateCustomer from "../pages/customer/update/UpdateCustomer";
+import CreateCustomer from "../pages/customer/create/CreateCustomer";
+import Customer from "../pages/customer/Customer";
+
 
 export default function Layout() {
   // const renderRoutes = (routes) => {
@@ -98,6 +102,14 @@ export default function Layout() {
               </Route>
               <Route path="view" element={<User />} />
               <Route path="create" element={<CreateUser />} />
+            </Route>
+            <Route path="/customers">
+              <Route path="profile" element={<Profile />} />
+              <Route path="update">
+                <Route path=":username" element={<UpdateCustomer />} />
+              </Route>
+              <Route path="view" element={<Customer />} />
+              <Route path="create" element={<CreateCustomer />} />
             </Route>
             <Route path="/products">
               <Route path=":productId/*" element={<ProductDetail />}></Route>

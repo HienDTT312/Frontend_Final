@@ -6,10 +6,10 @@ import { AiFillHeart } from "react-icons/ai";
 import { BsInstagram } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-import vuNam from "../../../assets/user/avatar/vuNam.jpeg";
+import vuNam from "../../../assets/customer/avatar/vuNam.jpeg";
 import coverImg from "./../../../assets/background/defaultCover.jpg";
 import Switch from "../../../component/switch/Switch";
-import styles from "./UserProfile.module.css";
+import styles from "./CustomerProfile.module.css";
 import Spinner from "../../../component/spinner/Spinner";
 import Input from "../../../component/input/Input";
 import Select from "../../../component/select/Select";
@@ -76,9 +76,9 @@ const previewFriend = [
   },
 ];
 
-function UserProfile() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  const [user, setUser] = useState(currentUser);
+function CustomerProfile() {
+  const currentCustomer = JSON.parse(localStorage.getItem("currentCustomer"));
+  const [customer, setCustomer] = useState(currentCustomer);
   const [editMode, setEditMode] = useState(false);
   const [preview, setPreview] = useState("");
   const [oldImage, setOldImage] = useState(false);
@@ -120,9 +120,9 @@ function UserProfile() {
         setPreview(event.target.result);
       };
       setOldImage(true);
-      return setUser({ ...user, [target.name]: target.files[0] });
+      return setCustomer({ ...customer, [target.name]: target.files[0] });
     }
-    setUser({ ...user, [target.name]: target.value });
+    setCustomer({ ...customer, [target.name]: target.value });
   };
 
   const handleSubmit = (e) => {
@@ -133,7 +133,7 @@ function UserProfile() {
     setEditMode(value);
   };
 
-  if (user === null) {
+  if (customer === null) {
     return (
       <div>
         <Spinner />
@@ -153,11 +153,11 @@ function UserProfile() {
           <div className={styles.left}>
             <img
               className={styles.avatar}
-              src={`http://localhost:3001/${currentUser.avatar}`}
+              src={`http://localhost:3001/${currentCustomer.avatar}`}
               alt="avatar"
             />
             <div className={styles.info}>
-              <h2>{currentUser.full_name}</h2>
+              <h2>{currentCustomer.full_name}</h2>
               <p>240 Friends</p>
             </div>
           </div>
@@ -267,7 +267,7 @@ function UserProfile() {
                     styles.formInput,
                     "full_name",
                     "text",
-                    user.full_name,
+                    customer.full_name,
                     "Your Full Name",
                     undefined,
                     !editMode
@@ -285,7 +285,7 @@ function UserProfile() {
                     styles.formInput,
                     "first_name",
                     "text",
-                    user.first_name,
+                    customer.first_name,
                     "Your First Name",
                     undefined,
                     !editMode
@@ -303,7 +303,7 @@ function UserProfile() {
                     styles.formInput,
                     "last_name",
                     "text",
-                    user.last_name,
+                    customer.last_name,
                     "Your First Name",
                     undefined,
                     !editMode
@@ -327,7 +327,7 @@ function UserProfile() {
                         !editMode,
                         undefined,
                         undefined,
-                        user.gender === "male"
+                        customer.gender === "male"
                       )}
                     />
                     <label htmlFor="male" className={styles.radioLabel}>
@@ -348,7 +348,7 @@ function UserProfile() {
                         !editMode,
                         undefined,
                         undefined,
-                        user.gender === "female"
+                        customer.gender === "female"
                       )}
                     />
                     <label htmlFor="female" className={styles.radioLabel}>
@@ -356,26 +356,6 @@ function UserProfile() {
                     </label>
                   </div>
                 </div>
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="role" className={styles.label}>
-                  Role
-                </label>
-                <Select
-                  name="role_id"
-                  defaultValue={user.role_id === "" ? "" : user.role_id}
-                  id="role"
-                  disabled={!editMode}
-                  onChange={handleOnChange}
-                >
-                  <option value="" disabled hidden>
-                    Choose your role...
-                  </option>
-                  <option value="1">Sale Manager</option>
-                  <option value="2">Manager</option>
-                  <option value="3">Staff</option>
-                  <option value="4">Admin</option>
-                </Select>
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="phone" className={styles.label}>
@@ -388,7 +368,7 @@ function UserProfile() {
                     styles.formInput,
                     "phone",
                     "text",
-                    user.phone,
+                    customer.phone,
                     "Your Phone",
                     undefined,
                     !editMode
@@ -410,4 +390,4 @@ function UserProfile() {
   );
 }
 
-export default UserProfile;
+export default CustomerProfile;
