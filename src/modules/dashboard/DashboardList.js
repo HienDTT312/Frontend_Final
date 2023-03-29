@@ -336,11 +336,11 @@ function DashboardList() {
           <div className={styles.recentTime}>
             <div className={styles.recentLeft}>
               <FaRegUser className={styles.recentIcon} />
-              <span className={styles.recentText}>Nguyen Quoc Anh</span>
+              <span className={styles.recentText}>Do thi Thu Hien</span>
             </div>
             <div className={styles.recentRight}>
               <AiOutlineClockCircle className={styles.recentIcon} />
-              <span className={styles.recentText}>Friday, April 8 2022</span>
+              <span className={styles.recentText}>Friday, April 8 2023</span>
             </div>
           </div>
           <div className={styles.recentList}>

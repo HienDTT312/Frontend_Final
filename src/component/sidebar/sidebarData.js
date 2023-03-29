@@ -83,6 +83,57 @@ const SidebarAdmin = [
     ],
   },
   {
+    title: "Customer",
+    path: "/customers",
+    icon: <MdManageAccounts />,
+    iconClosed: <RiArrowDownSFill />,
+    iconOpened: <RiArrowUpSFill />,
+    subNav: [
+      {
+        title: "View",
+        path: "/customers/view",
+      },
+      {
+        title: "Create",
+        path: "/customers/create",
+      },
+    ],
+  },
+  {
+    title: "Transaction",
+    path: "/transactions",
+    icon: <MdManageAccounts />,
+    iconClosed: <RiArrowDownSFill />,
+    iconOpened: <RiArrowUpSFill />,
+    subNav: [
+      {
+        title: "View",
+        path: "/transactions/view",
+      },
+      {
+        title: "Create",
+        path: "/transactions/create",
+      },
+    ],
+  },
+  {
+    title: "Import",
+    path: "/imports",
+    icon: <MdManageAccounts />,
+    iconClosed: <RiArrowDownSFill />,
+    iconOpened: <RiArrowUpSFill />,
+    subNav: [
+      {
+        title: "View",
+        path: "/imports/view",
+      },
+      {
+        title: "Create",
+        path: "/imports/create",
+      },
+    ],
+  },
+  {
     title: "Product",
     path: "/products",
     icon: <FaRegLightbulb />,
