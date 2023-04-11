@@ -10,7 +10,7 @@ import {
 import { IoInformationCircleOutline } from "react-icons/io5";
 import clsx from "clsx";
 
-import styles from "./ProductForm.module.css";
+import styles from "./PromotionForm.module.css";
 import Input from "../../../component/input/Input";
 import Button from "../../../component/button/Button";
 import Spinner from "../../../component/spinner/Spinner";
@@ -19,10 +19,10 @@ import Preview from "../../../component/preview/Preview";
 import checkRole from "../../../helpers/checkRole";
 import Popup from "../../../component/popup/Popup";
 
-function ProductForm({ mode }) {
+function PromotionForm({ mode }) {
   const navigate = useNavigate();
-  const { productId } = useParams();
-  const [product, setProduct] = useState(null);
+  const { promotionId } = useParams();
+  const [promotion, setPromotion] = useState(null);
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
@@ -68,24 +68,24 @@ function ProductForm({ mode }) {
     getCategories();
     getBrands();
     getSuppliers();
-    async function getOneProduct() {
+    async function getOnePromotion() {
       const res = await axiosClient.get(
-        `http://localhost:3001/project/product/${productId}`
+        `http://localhost:3001/project/promotion/${promotionId}`
       );
-      setProduct(res.data.data);
+      setPromotion(res.data.data);
       setOldDocsLength(res.data.data.documents.length);
       if (res.data.data.status === "final_closure") {
         alert(
-          "The status of product is final closure, You can not update this product"
+          "The status of promotion is final closure, You can not update this promotion"
         );
         navigate(-1);
       }
     }
 
     if (mode === "update") {
-      getOneProduct();
+      getOnePromotion();
     } else if (mode === "create") {
-      return setProduct({
+      return setPromotion({
         title: "",
         documents: [],
         description: "",
@@ -219,15 +219,15 @@ function ProductForm({ mode }) {
 
   const handleOnFileChange = (target) => {
     for (let file of target.files) {
-      setProduct((product) => {
-        return { ...product, documents: [...product.documents, file] };
+      setPromotion((promotion) => {
+        return { ...promotion, documents: [...promotion.documents, file] };
       });
       setNewDocuments((newDocuments) => [...newDocuments, file]);
     }
   };
 
   const handleDeleteFile = (indexItem, docId) => {
-    // Delete old document of product
+    // Delete old document of promotion
     if (docId) {
       axiosClient
         .delete(`http://localhost:3001/project/document/${docId}`)
@@ -235,10 +235,10 @@ function ProductForm({ mode }) {
         .catch((err) => console.log(err));
       setOldDocsLength((oldDocsLength) => oldDocsLength - 1);
     }
-    setProduct((product) => {
+    setPromotion((promotion) => {
       return {
-        ...product,
-        documents: product.documents.filter((item, index) => {
+        ...promotion,
+        documents: promotion.documents.filter((item, index) => {
           return index !== indexItem;
         }),
       };
@@ -250,11 +250,11 @@ function ProductForm({ mode }) {
 
   const handleOnChange = (target) => {
     console.log('target', target.name + 'value', target.value)
-    setProduct({ ...product, [target.name]: target.value });
+    setPromotion({ ...promotion, [target.name]: target.value });
   };
 
   const handleOnChangeTextArea = ({ target }) => {
-    setProduct({ ...product, [target.name]: target.value });
+    setPromotion({ ...promotion, [target.name]: target.value });
   };
 
   const handleOnChangeCheck = (target) => {
@@ -263,31 +263,25 @@ function ProductForm({ mode }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (agree === false) {
-      return alert("You have to agree with Condition");
-    }
 
     const formData = new FormData();
-    formData.append("title", product.title);
-    formData.append("price", product.price);
-    for (let doc of newDocuments) {
-      formData.append("documents", doc);
-    }
-    formData.append("description", product.description);
-    formData.append("brand_name", product.brand_name);
-    formData.append("author", product.author);
-    formData.append("supplier_name", product.supplier_name);
-    formData.append("category_id", +product.category_id);
+    formData.append("title", promotion.title);
+    formData.append("price", promotion.price);
+    formData.append("description", promotion.description);
+    formData.append("discount", promotion.discount);
+    formData.append("brand_id", promotion.brand_id);
+    formData.append("supplier_id", promotion.supplier_id);
+    formData.append("category_id", +promotion.category_id);
     if (mode === "create") {
       axiosClient
-        .post(`http://localhost:3001/project/product`, formData)
-        .then((res) => navigate("/products/view", { replace: true }))
+        .post(`http://localhost:3001/project/promotion`, formData)
+        .then((res) => navigate("/promotions/view", { replace: true }))
         .catch((err) => console.log(err));
     } else {
-      formData.append("product_id", product.product_id);
+      formData.append("promotion_id", promotion.promotion_id);
       axiosClient
-        .put(`http://localhost:3001/project/product/${product.product_id}`, formData)
-        .then((res) => navigate("/products/view", { replace: true }))
+        .put(`http://localhost:3001/project/promotion/${promotion.promotion_id}`, formData)
+        .then((res) => navigate("/promotions/view", { replace: true }))
         .catch((err) => console.log(err));
     }
   };
@@ -301,7 +295,7 @@ function ProductForm({ mode }) {
     setAgree(true);
   };
 
-  if (!product) {
+  if (!promotion) {
     return (
       <div>
         <Spinner />
@@ -312,7 +306,7 @@ function ProductForm({ mode }) {
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.title}>
-        {mode === "update" ? `Update Product` : `Create Product`}
+        {mode === "update" ? `Update Promotion` : `Create Promotion`}
       </h2>
       <form onSubmit={handleSubmit}>
         {/* Title */}
@@ -327,7 +321,7 @@ function ProductForm({ mode }) {
               styles.formInput,
               "title",
               "text",
-              product.title,
+              promotion.title,
               "Your Title",
               undefined
             )}
@@ -344,25 +338,25 @@ function ProductForm({ mode }) {
               styles.formInput,
               "price",
               "text",
-              product.price,
+              promotion.price,
               "Your price",
               undefined
             )}
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="author" className={styles.label}>
-            Author
+          <label htmlFor="discount" className={styles.label}>
+            Amount
           </label>
           <Input
             onChange={handleOnChange}
             config={configInput(
-              "author",
+              "discount",
               styles.formInput,
-              "author",
+              "discount",
               "text",
-              product.author,
-              "Your author",
+              promotion.discount,
+              "Your discount",
               undefined
             )}
           />
@@ -374,7 +368,7 @@ function ProductForm({ mode }) {
           </label>
           <Select
             name="category_id"
-            defaultValue={product.category_id !== "" ? product.category_id : ""}
+            defaultValue={promotion.category_id !== "" ? promotion.category_id : ""}
             id="category"
             onChange={handleOnChange}
           >
@@ -397,8 +391,8 @@ function ProductForm({ mode }) {
             Brand
           </label>
           <Select
-            name="brand_name"
-            defaultValue={product.brand_name !== "" ? product.brand_name : ""}
+            name="brand_id"
+            defaultValue={promotion.brand_id !== "" ? promotion.brand_id : ""}
             id="brand"
             onChange={handleOnChange}
           >
@@ -408,7 +402,7 @@ function ProductForm({ mode }) {
             {brands.map((brand, index) => (
               <option
                 key={`${brand.brand_id} ${index}`}
-                value={brand.brand_name}
+                value={brand.brand_id}
               >
                 {brand.brand_name}
               </option>
@@ -421,8 +415,8 @@ function ProductForm({ mode }) {
             Supplier
           </label>
           <Select
-            name="supplier_name"
-            defaultValue={product.supplier_name !== "" ? product.supplier_name : ""}
+            name="supplier_id"
+            defaultValue={promotion.supplier_id !== "" ? promotion.supplier_id : ""}
             id="supplier"
             onChange={handleOnChange}
           >
@@ -432,7 +426,7 @@ function ProductForm({ mode }) {
             {suppliers.map((supplier, index) => (
               <option
                 key={`${supplier.supplier_id} ${index}`}
-                value={supplier.supplier_name}
+                value={supplier.supplier_id}
               >
                 {supplier.supplier_name}
               </option>
@@ -451,47 +445,10 @@ function ProductForm({ mode }) {
             placeholder="Your description"
             className={styles.description}
             id="description"
-            value={product.description}
+            value={promotion.description}
           ></textarea>
         </div>
-        {/* Preview */}
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Documents</label>
-          <div>
-            <Preview
-              // onClickItem={undefined}
-              data={product.documents}
-              renderBody={renderPreview}
-              addMode={{ status: true, onFileChange: handleOnFileChange }}
-            />
-          </div>
-        </div>
         {/* Brands */}
-        <div className={clsx(styles.formGroup, styles.formCheck)}>
-          <label htmlFor="agree" className={styles.checkLabel}>
-            <Input
-              onChange={handleOnChangeCheck}
-              config={configInput(
-                "agree",
-                styles.checkInput,
-                "agreeBrands",
-                "checkbox",
-                "",
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                false,
-                agree
-              )}
-            />
-            <i className={styles.inputHelper}></i>I agree to all
-          </label>
-          <span className={styles.brandsBtn} onClick={() => setIsOpen(true)}>
-            Brands & Conditions
-          </span>
-        </div>
         <Button
           type={"submit"}
           buttonSize={"btnLarge"}
@@ -499,18 +456,9 @@ function ProductForm({ mode }) {
         >
           Confirm
         </Button>
-        <Popup
-          isOpen={isOpen}
-          icon={<IoInformationCircleOutline className={styles.popupIcon} />}
-          title="Brands & Conditions"
-          message={body}
-          onClose={handleClickClose}
-          buttonTitle="I agree"
-          onConfirm={handleClickAgree}
-        />
       </form>
     </div>
   );
 }
 
-export default ProductForm;
+export default PromotionForm;

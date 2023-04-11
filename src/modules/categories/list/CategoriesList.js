@@ -27,7 +27,7 @@ function CategoriesList({ currentPage, onCurrentPage, onPageSize }) {
   };
 
   useEffect(() => {
-    axiosClient.get("http://localhost:3001/service1/category").then((res) => {
+    axiosClient.get("http://localhost:3001/project/category").then((res) => {
       setCategories(res.data.data);
     });
   }, []);
@@ -59,7 +59,7 @@ function CategoriesList({ currentPage, onCurrentPage, onPageSize }) {
 
   const handleClickDeleteCate = (deleteCateId) => {
     axiosClient
-      .delete(`http://localhost:3001/service1/category/${deleteCateId}`)
+      .delete(`http://localhost:3001/project/category/${deleteCateId}`)
       .then((response) => {
         console.log(response.data);
         navigate("/categories/view", { replace: true });

@@ -80,13 +80,13 @@ export default function LoginForm() {
 
   async function getToken() {
     const res = await axiosClient.post(
-      "http://localhost:3001/service1/login",
+      "http://localhost:3001/project/login",
       account
     );
     localStorage.setItem("accessToken", res.data.token);
 
     const currentUser = await axiosClient.get(
-      "http://localhost:3001/service1/identity"
+      "http://localhost:3001/project/identity"
     );
     localStorage.setItem("currentUser", JSON.stringify(currentUser.data.data));
     navigate("/dashboard", { replace: true });
@@ -99,7 +99,7 @@ export default function LoginForm() {
 
   const handleClickRecover = () => {
     axiosClient
-      .post(`http://localhost:3001/service1/forgot-password`, {
+      .post(`http://localhost:3001/project/forgot-password`, {
         username: recoverUsername,
       })
       .then((res) => {

@@ -24,7 +24,7 @@ function AggrementForm({ mode }) {
 
     if (mode === "update") {
       axiosClient
-        .get(`http://localhost:3001/service1/aggrement/${aggrementId}`)
+        .get(`http://localhost:3001/project/aggrement/${aggrementId}`)
         .then((response) => setAggrement({ ...response.data.data }))
         .catch((err) => console.log(err));
     } else if (mode === "create") {
@@ -70,7 +70,7 @@ function AggrementForm({ mode }) {
     e.preventDefault();
     if (mode === "update") {
       return axiosClient
-        .put(`http://localhost:3001/service1/aggrement`, aggrement)
+        .put(`http://localhost:3001/project/aggrement`, aggrement)
         .then((response) => {
           console.log(response.data);
           navigate("/aggrements/view", { replace: true });
@@ -79,7 +79,7 @@ function AggrementForm({ mode }) {
     }
 
     return axiosClient
-      .post(`http://localhost:3001/service1/aggrement`, {
+      .post(`http://localhost:3001/project/aggrement`, {
         aggrement_name: aggrement.aggrement_name,
         description: aggrement.description,
         status: aggrement.status,

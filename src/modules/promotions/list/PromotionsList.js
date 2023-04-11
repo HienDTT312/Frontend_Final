@@ -8,19 +8,19 @@ import { HiDownload } from "react-icons/hi";
 import queryString from "query-string";
 import clsx from "clsx";
 
-import styles from "./ProductsList.module.css";
+import styles from "./PromotionsList.module.css";
 import Popup from "../../../component/popup/Popup";
 import Table from "../../../component/table/Table";
-import ProductTableHead from "./table-head";
+import PromotionTableHead from "./table-head";
 import Button from "../../../component/button/Button";
 import Pagination from "../../../component/pagination/Pagination";
 import Input from "../../../component/input/Input";
 import Select from "../../../component/select/Select";
 
-function ProductsList() {
-  const [promotionId, setProductId] = useState("");
+function PromotionsList() {
+  const [productId, setPromotionId] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [promotions, setProducts] = useState([]);
+  const [products, setPromotions] = useState([]);
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 10,
@@ -36,9 +36,9 @@ function ProductsList() {
     setPagination({ ...pagination, page: newPage });
   };
 
-  async function getProducts() {
-    let res = await axiosClient.get("http://localhost:3001/project/promotion");
-    setProducts(res.data.data);
+  async function getPromotions() {
+    let res = await axiosClient.get("http://localhost:3001/project/product");
+    setPromotions(res.data.data);
   }
 
   useEffect(() => {
@@ -64,37 +64,37 @@ function ProductsList() {
     getCategories();
     getDepartments();
     getBrands();
-    getProducts();
+    getPromotions();
   }, []);
 
   useEffect(() => {
-    setPagination((pagination) => ({ ...pagination, totalRows: promotions.length }));
-  }, [promotions.length]);
+    setPagination((pagination) => ({ ...pagination, totalRows: products.length }));
+  }, [products.length]);
 
   useEffect(() => {
     setSeperatePage(
-      promotions.slice(
+      products.slice(
         (pagination.page - 1) * pagination.limit,
-        pagination.page * pagination.limit > promotions.length
+        pagination.page * pagination.limit > products.length
           ? undefined
           : pagination.page * pagination.limit
       )
     );
-  }, [promotions, pagination.limit, pagination.page]);
+  }, [products, pagination.limit, pagination.page]);
 
   const handleClickClose = () => setIsOpen(false);
 
-  const onClickDelete = (deleteProductId) => {
+  const onClickDelete = (deletePromotionId) => {
     setIsOpen(true);
-    setProductId(deleteProductId);
+    setPromotionId(deletePromotionId);
   };
 
-  const handleClickDeleteProduct = (deleteProductId) => {
+  const handleClickDeletePromotion = (deletePromotionId) => {
     axiosClient
-      .delete(`http://localhost:3001/project/promotion/${deleteProductId}`)
+      .delete(`http://localhost:3001/project/product/${deletePromotionId}`)
       .then((response) => {
         console.log(response.data);
-        getProducts();
+        getPromotions();
       })
       .catch((err) => console.log(err));
   };
@@ -118,37 +118,37 @@ function ProductsList() {
       .catch((err) => console.log(err));
   };
 
-  const renderRows = (promotion, index, onClickDelete) => (
+  const renderRows = (product, index, onClickDelete) => (
     <tr
       style={{ backgroundColor: (index + 1) % 2 !== 0 ? "#f2edf3" : "#fff" }}
-      key={`${promotion.promotion_id} - ${index}`}
+      key={`${product.product_id} - ${index}`}
     >
-      <td>{promotion.title}</td>
-      <td>{promotion.description}</td>
-      <td>{promotion.supplier_name}</td>
-      <td>{promotion.category_name}</td>
-      <td>{promotion.brand_name}</td>
+      <td>{product.title}</td>
+      <td>{product.description}</td>
+      <td>{product.supplier_name}</td>
+      <td>{product.category_name}</td>
+      <td>{product.brand_name}</td>
       <td>
         <Link
           className={styles.iconAction}
-          to={`/promotions/${promotion.promotion_id}/documents`}
+          to={`/products/${product.product_id}/documents`}
         >
           <ImEye />
         </Link>
         <Link
           onClick={(e) => {
-            if (promotion.status === "final_closure") {
+            if (product.status === "final_closure") {
               e.preventDefault();
             }
           }}
-          className={clsx(styles.iconAction, promotion.status === "final_closure" && styles.active)}
-          to={`/promotions/update/${promotion.promotion_id}`}
+          className={clsx(styles.iconAction, product.status === "final_closure" && styles.active)}
+          to={`/products/update/${product.product_id}`}
         >
           <BiEditAlt />
         </Link>
         <RiDeleteBin5Line
           className={styles.iconAction}
-          onClick={() => onClickDelete(promotion.promotion_id)}
+          onClick={() => onClickDelete(product.product_id)}
         />
       </td>
     </tr>
@@ -162,14 +162,14 @@ function ProductsList() {
     e.preventDefault();
     const paramString = queryString.stringify(filters);
     axiosClient
-      .get(`http://localhost:3001/project/promotion?${paramString}`)
+      .get(`http://localhost:3001/project/product?${paramString}`)
       .then((res) => {
-        setProducts(res.data.data);
+        setPromotions(res.data.data);
       })
       .catch((err) => console.log(err));
   };
 
-  if (promotions.length === 0) {
+  if (products.length === 0) {
     return (
       <div>
         <Table loading={true} />
@@ -281,14 +281,14 @@ function ProductsList() {
             type={"submit"}
             buttonSize={"btnMedium"}
             buttonStyle={"btnPrimarySolid"}
-            onClick={() => getProducts()}
+            onClick={() => getPromotions()}
           >
             Update Table
           </Button>
         </form>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h2>Product List</h2>
+        <h2>Promotion List</h2>
         <Button
           className={styles.downloadBtn}
           type={"button"}
@@ -302,7 +302,7 @@ function ProductsList() {
       </div>
       <Table
         loading={false}
-        head={<ProductTableHead />}
+        head={<PromotionTableHead />}
         renderRows={renderRows}
         onClickDeleteButton={onClickDelete}
         data={seperatePage}
@@ -313,10 +313,10 @@ function ProductsList() {
         title="Confirm Information"
         message="Are you sure to delete this record?"
         onClose={handleClickClose}
-        onConfirm={() => handleClickDeleteProduct(promotionId)}
+        onConfirm={() => handleClickDeletePromotion(productId)}
       />
     </div>
   );
 }
 
-export default ProductsList;
+export default PromotionsList;

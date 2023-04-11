@@ -1,0 +1,66 @@
+.container {
+  overflow-x: scroll;
+  background-color: #fff;
+  padding: 2.5rem 2.5rem;
+  width: 100%;
+  border: 0;
+  border-radius: 0.3125rem;
+}
+
+.iconAction {
+  font-size: 20px;
+  color: #bba8bff5;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.iconAction.active {
+  color: #dddddd;
+  cursor: default;
+}
+
+.iconAction.active:hover {
+  transform: none;
+  color: #dddddd;
+}
+
+.iconAction:hover {
+  transform: translateY(-3px);
+  color: #b66dff;
+}
+
+.iconAction + .iconAction {
+  margin-left: 10px;
+}
+
+.downloadBtn {
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.downloadBtn > .downloadIcon {
+  margin-right: 4px;
+}
+
+/* Filter */
+
+.filterForm {
+  margin: 20px 0 40px;
+}
+
+.filterContent {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.right {
+  display: flex;
+}
+
+.filterBtn {
+  margin-right: 30px;
+  font-weight: 500;
+}

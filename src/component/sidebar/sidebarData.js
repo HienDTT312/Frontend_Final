@@ -134,6 +134,23 @@ const SidebarAdmin = [
     ],
   },
   {
+    title: "Promotions",
+    path: "/promotions",
+    icon: <MdManageAccounts />,
+    iconClosed: <RiArrowDownSFill />,
+    iconOpened: <RiArrowUpSFill />,
+    subNav: [
+      {
+        title: "View",
+        path: "/promotions/view",
+      },
+      {
+        title: "Create",
+        path: "/promotions/create",
+      },
+    ],
+  },
+  {
     title: "Product",
     path: "/products",
     icon: <FaRegLightbulb />,

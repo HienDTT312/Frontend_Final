@@ -25,7 +25,7 @@ function CustomersList({ currentPage, onCurrentPage, onPageSize }) {
   const [seperatePage, setSeperatePage] = useState([]);
 
   async function getCustomers() {
-    let res = await axiosClient.get("http://localhost:3001/service1/customer/");
+    let res = await axiosClient.get("http://localhost:3001/project/customer/");
     setCustomers(res.data.data.rows);
   }
 
@@ -64,7 +64,7 @@ function CustomersList({ currentPage, onCurrentPage, onPageSize }) {
 
   const handleClickDeleteCustomer = (deleteCustomerId) => {
     axiosClient
-      .delete(`http://localhost:3001/service1/customer/${deleteCustomerId}`)
+      .delete(`http://localhost:3001/project/customer/${deleteCustomerId}`)
       .then((response) => {
         console.log(response.data);
         getCustomers();

@@ -162,7 +162,7 @@ function DashboardList() {
 
   useEffect(() => {
     async function getPopularProduct() {
-      const res = await axiosClient.get(`http://localhost:3001/service1/view`);
+      const res = await axiosClient.get(`http://localhost:3001/project/view`);
       setProducts(res.data.data);
     }
 
@@ -172,7 +172,7 @@ function DashboardList() {
   useEffect(() => {
     async function getDashboardCard(type) {
       const res = await axiosClient.get(
-        `http://localhost:3001/service1/${type}`
+        `http://localhost:3001/project/${type}`
       );
       return setDataDashboard(res.data.data);
     }

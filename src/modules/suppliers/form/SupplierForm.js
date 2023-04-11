@@ -25,7 +25,7 @@ function SupplierForm({ mode }) {
     }
     if (mode === "update") {
       axiosClient
-        .get(`http://localhost:3001/service1/supplier/${supplierID}`)
+        .get(`http://localhost:3001/project/supplier/${supplierID}`)
         .then((response) => {
           setSupplier({ ...response.data.data });
         })
@@ -73,7 +73,7 @@ function SupplierForm({ mode }) {
     e.preventDefault();
     if (mode === "update") {
       return axiosClient
-        .put(`http://localhost:3001/service1/supplier`, {
+        .put(`http://localhost:3001/project/supplier`, {
           supplier_name: supplier.supplier_name,
           status: supplier.supplier_status,
           phone_number: supplier.supplier_number,
@@ -88,7 +88,7 @@ function SupplierForm({ mode }) {
     }
 
     return axiosClient
-      .post(`http://localhost:3001/service1/supplier`, {
+      .post(`http://localhost:3001/project/supplier`, {
         supplier_name: supplier.supplier_name,
         status: supplier.supplier_status,
         phone_number: supplier.supplier_number,

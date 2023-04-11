@@ -21,11 +21,11 @@ function CategoryForm({ mode }) {
       navigate("/dashboard", { replace: true });
     }
     axiosClient
-      .get(`http://localhost:3001/service1/department/`)
+      .get(`http://localhost:3001/project/department/`)
       .then((res) => setDepartment(res.data.data));
     if (mode === "update") {
       axiosClient
-        .get(`http://localhost:3001/service1/category/${cateId}`)
+        .get(`http://localhost:3001/project/category/${cateId}`)
         .then((res) => setCategory(res.data.data))
         .catch((err) => console.log(err));
     } else if (mode === "create") {
@@ -70,7 +70,7 @@ function CategoryForm({ mode }) {
     e.preventDefault();
     if (mode === "update") {
       return axiosClient
-        .put(`http://localhost:3001/service1/category`, category)
+        .put(`http://localhost:3001/project/category`, category)
         .then((response) => {
           console.log(response.data);
           navigate("/categories/view", { replace: true });
@@ -79,7 +79,7 @@ function CategoryForm({ mode }) {
     }
 
     return axiosClient
-      .post(`http://localhost:3001/service1/category`, {
+      .post(`http://localhost:3001/project/category`, {
         category_name: category.category_name,
         description: category.description,
       })

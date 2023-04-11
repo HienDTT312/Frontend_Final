@@ -30,7 +30,7 @@ function AggrementsList() {
 
   async function getAggrements() {
     let res = await axiosClient.get(
-      "http://localhost:3001/service1/aggrement"
+      "http://localhost:3001/project/aggrement"
     );
     setAggrements(res.data.data);
   }
@@ -70,7 +70,7 @@ function AggrementsList() {
 
   const handleClickDeleteCate = (deleteCateId) => {
     axiosClient
-      .delete(`http://localhost:3001/service1/aggrement/${deleteCateId}`)
+      .delete(`http://localhost:3001/project/aggrement/${deleteCateId}`)
       .then((response) => {
         console.log(response.data);
         getAggrements();

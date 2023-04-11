@@ -24,7 +24,7 @@ function DepartmentForm({ mode }) {
     }
 
     // Get manager
-    axiosClient.get(`http://localhost:3001/service1/user`).then((response) => {
+    axiosClient.get(`http://localhost:3001/project/user`).then((response) => {
       const filterManger = response.data.data.rows.filter((manager) => {
         return manager.role_id === 3;
       });
@@ -33,7 +33,7 @@ function DepartmentForm({ mode }) {
     });
     if (mode === "update") {
       axiosClient
-        .get(`http://localhost:3001/service1/department/${departmentID}`)
+        .get(`http://localhost:3001/project/department/${departmentID}`)
         .then((response) => setDepartment({ ...response.data.data }))
         .catch((err) => console.log(err));
     } else if (mode === "create") {
@@ -79,7 +79,7 @@ function DepartmentForm({ mode }) {
     e.preventDefault();
     if (mode === "update") {
       return axiosClient
-        .put(`http://localhost:3001/service1/department`, {
+        .put(`http://localhost:3001/project/department`, {
           department_name: department.department_name,
           description: department.description,
           manager_id: department.manager_id,
@@ -93,7 +93,7 @@ function DepartmentForm({ mode }) {
     }
 
     return axiosClient
-      .post(`http://localhost:3001/service1/department`, {
+      .post(`http://localhost:3001/project/department`, {
         department_name: department.department_name,
         description: department.description,
         manager_id: department.manager_id,

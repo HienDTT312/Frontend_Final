@@ -25,7 +25,7 @@ function UsersList({ currentPage, onCurrentPage, onPageSize }) {
   const [seperatePage, setSeperatePage] = useState([]);
 
   async function getUsers() {
-    let res = await axiosClient.get("http://localhost:3001/service1/user/");
+    let res = await axiosClient.get("http://localhost:3001/project/user/");
     setUsers(res.data.data.rows);
   }
 
@@ -68,7 +68,7 @@ function UsersList({ currentPage, onCurrentPage, onPageSize }) {
 
   const handleClickDeleteUser = (deleteUserId) => {
     axiosClient
-      .delete(`http://localhost:3001/service1/user/${deleteUserId}`)
+      .delete(`http://localhost:3001/project/user/${deleteUserId}`)
       .then((response) => {
         console.log(response.data);
         getUsers();

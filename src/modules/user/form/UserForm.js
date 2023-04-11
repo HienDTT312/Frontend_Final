@@ -28,7 +28,7 @@ function UserForm({ mode }) {
 
     if (mode === "update") {
       axiosClient
-        .get(`http://localhost:3001/service1/user/${username}`)
+        .get(`http://localhost:3001/project/user/${username}`)
         .then((response) => {
           setUser({
             ...response.data.data,
@@ -107,7 +107,7 @@ function UserForm({ mode }) {
       formData.append("old_image", oldImage);
 
       return axiosClient
-        .put(`http://localhost:3001/service1/user/${user.user_id}`, formData)
+        .put(`http://localhost:3001/project/user/${user.user_id}`, formData)
         .then((response) => {
           console.log(response.data);
           navigate("/users/view", { replace: true });
@@ -126,7 +126,7 @@ function UserForm({ mode }) {
     formData.append("avatar", user.avatar);
 
     return axiosClient
-      .post(`http://localhost:3001/service1/user`, formData)
+      .post(`http://localhost:3001/project/user`, formData)
       .then((response) => {
         console.log(response.data);
         navigate("/users/view", { replace: true });

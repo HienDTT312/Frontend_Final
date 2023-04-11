@@ -19,7 +19,7 @@ function ResetPassword() {
       return alert("Doesnt match");
     }
     axiosClient
-      .post(`http://localhost:3001/service1/reset-password/${token}`, {
+      .post(`http://localhost:3001/project/reset-password/${token}`, {
         new_password: customer.new_password,
         confirm_password: customer.confirmPassword,
       })

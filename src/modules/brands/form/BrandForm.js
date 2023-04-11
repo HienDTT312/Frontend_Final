@@ -25,7 +25,7 @@ function BrandForm({ mode }) {
     }
     if (mode === "update") {
       axiosClient
-        .get(`http://localhost:3001/service1/brand/${brandID}`)
+        .get(`http://localhost:3001/project/brand/${brandID}`)
         .then((response) => {
           setBrand({ ...response.data.data });
         })
@@ -73,7 +73,7 @@ function BrandForm({ mode }) {
     e.preventDefault();
     if (mode === "update") {
       return axiosClient
-        .put(`http://localhost:3001/service1/brand`, {
+        .put(`http://localhost:3001/project/brand`, {
           brand_name: brand.brand_name,
           status: brand.brand_status,
           phone_number: brand.brand_number,
@@ -88,7 +88,7 @@ function BrandForm({ mode }) {
     }
 
     return axiosClient
-      .post(`http://localhost:3001/service1/brand`, {
+      .post(`http://localhost:3001/project/brand`, {
         brand_name: brand.brand_name,
         status: brand.brand_status,
         phone_number: brand.brand_number,

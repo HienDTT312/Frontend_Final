@@ -26,7 +26,7 @@ function DepartmentsList({ currentPage, onCurrentPage, onPageSize }) {
 
   async function getDepartments() {
     let res = await axiosClient.get(
-      "http://localhost:3001/service1/department"
+      "http://localhost:3001/project/department"
     );
     setDepartments(res.data.data);
   }
@@ -71,7 +71,7 @@ function DepartmentsList({ currentPage, onCurrentPage, onPageSize }) {
   const handleClickDeleteCate = (deleteDepartmentId) => {
     axiosClient
       .delete(
-        `http://localhost:3001/service1/department/${deleteDepartmentId}`
+        `http://localhost:3001/project/department/${deleteDepartmentId}`
       )
       .then((response) => getDepartments())
       .catch((err) => console.log(err));

@@ -25,7 +25,7 @@ function SuppliersList() {
   const [seperatePage, setSeperatePage] = useState([]);
 
   async function getSuppliers() {
-    let res = await axiosClient.get("http://localhost:3001/service1/supplier");
+    let res = await axiosClient.get("http://localhost:3001/project/supplier");
     setSuppliers(res.data.data);
   }
 
@@ -68,7 +68,7 @@ function SuppliersList() {
 
   const handleClickDeleteSupplier = (deleteSupplierId) => {
     axiosClient
-      .delete(`http://localhost:3001/service1/supplier/${deleteSupplierId}`)
+      .delete(`http://localhost:3001/project/supplier/${deleteSupplierId}`)
       .then((response) => {
         console.log(response.data);
         getSuppliers();

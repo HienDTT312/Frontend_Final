@@ -29,6 +29,9 @@ import Supplier from "../pages/supplier/Supplier";
 import UpdateCustomer from "../pages/customer/update/UpdateCustomer";
 import CreateCustomer from "../pages/customer/create/CreateCustomer";
 import Customer from "../pages/customer/Customer";
+import UpdatePromotion from "../pages/promotion/update/UpdatePromotion";
+import CreatePromotion from "../pages/promotion/create/CreatePromotion";
+import Promotion from "../pages/promotion/Promotion";
 
 
 export default function Layout() {
@@ -94,6 +97,13 @@ export default function Layout() {
               </Route>
               <Route path="create" element={<CreateCategory />} />
               <Route path="view" element={<Category />} />
+            </Route>
+            <Route path="/promotions">
+              <Route path="update">
+                <Route path=":promotionId" element={<UpdatePromotion />} />
+              </Route>
+              <Route path="create" element={<CreatePromotion />} />
+              <Route path="view" element={<Promotion />} />
             </Route>
             <Route path="/users">
               <Route path="profile" element={<Profile />} />

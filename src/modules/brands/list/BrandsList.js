@@ -25,7 +25,7 @@ function BrandsList() {
   const [seperatePage, setSeperatePage] = useState([]);
 
   async function getBrands() {
-    let res = await axiosClient.get("http://localhost:3001/service1/brand");
+    let res = await axiosClient.get("http://localhost:3001/project/brand");
     setBrands(res.data.data);
   }
 
@@ -68,7 +68,7 @@ function BrandsList() {
 
   const handleClickDeleteBrand = (deleteBrandId) => {
     axiosClient
-      .delete(`http://localhost:3001/service1/brand/${deleteBrandId}`)
+      .delete(`http://localhost:3001/project/brand/${deleteBrandId}`)
       .then((response) => {
         console.log(response.data);
         getBrands();

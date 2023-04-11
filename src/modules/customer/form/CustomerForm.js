@@ -23,7 +23,7 @@ function CustomerForm({ mode }) {
     // Check role base
     if (mode === "update") {
       axiosClient
-        .get(`http://localhost:3001/service1/customer/${username}`)
+        .get(`http://localhost:3001/project/customer/${username}`)
         .then((response) => {
           setCustomer({
             ...response.data.data,
@@ -100,7 +100,7 @@ function CustomerForm({ mode }) {
       formData.append("old_image", oldImage);
 
       return axiosClient
-        .put(`http://localhost:3001/service1/customer/${customer.user_id}`, formData)
+        .put(`http://localhost:3001/project/customer/${customer.user_id}`, formData)
         .then((response) => {
           console.log(response.data);
           navigate("/customers/view", { replace: true });
@@ -118,7 +118,7 @@ function CustomerForm({ mode }) {
     formData.append("avatar", customer.avatar);
 
     return axiosClient
-      .post(`http://localhost:3001/service1/customer`, formData)
+      .post(`http://localhost:3001/project/customer`, formData)
       .then((response) => {
         console.log(response.data);
         navigate("/customers/view", { replace: true });
