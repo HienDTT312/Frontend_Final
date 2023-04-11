@@ -1,0 +1,282 @@
+:root {
+  --border--radius-1: 3px;
+}
+
+.container {
+  padding: 2.5rem 2.5rem;
+  background-color: #fff;
+  border-radius: 0.3125rem;
+}
+
+.title {
+  color: #343a40;
+  font-size: 1.125rem;
+  margin: 0 0 2rem 0;
+}
+
+.header {
+  display: flex;
+  margin-bottom: 44px;
+}
+
+.header .imgContainer {
+  flex-grow: 1;
+  margin-right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgContainer img {
+  display: inline-block;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.heading {
+  flex-grow: 3;
+}
+
+.heading h3 {
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.heading h4 {
+  font-size: 1.25rem;
+  line-height: 28px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.heading p {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.description {
+  padding: 0 40px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: justify;
+  margin-bottom: 44px;
+}
+
+.nav {
+  border-top: 1px solid #dbdbdb;
+  display: flex;
+  justify-content: center;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #8e8e8e;
+  margin-right: 60px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.navLink:last-child {
+  margin-right: 0;
+}
+
+.navLink.active {
+  color: #262626;
+}
+
+.navLink span {
+  margin-left: 6px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding: 0 44px;
+}
+
+.actionContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.actionItem {
+  background-color: #fafafa;
+  color: #555;
+  border: 1px solid #c6c6c6;
+  border-radius: 2px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  padding: 4px 0 4px 10px;
+}
+
+.actionItem.active {
+  background-color: #dddddd;
+}
+
+.actionItem.active > .actionBtn {
+  cursor: default;
+}
+
+.actionItem.active > .actionBtn:hover .actionIcon,
+.actionItem.active > .actionBtn:hover .actionIcon + span {
+  color: #555;
+}
+
+.actionIcon {
+  font-size: 1.25rem;
+  margin-right: 4px;
+}
+
+.actionIcon + span {
+  padding: 0 6px 0 1px;
+  font-weight: 500;
+  color: #555555;
+  border-right: 1px solid #c6c6c6;
+  transition: 0.4s ease;
+}
+
+.actionBtn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.4s ease;
+}
+
+.actionBtn:hover .actionIcon,
+.actionBtn:hover .actionIcon + span {
+  color: #000;
+}
+
+.actionBtn + span {
+  color: #000;
+  font-size: 1rem;
+  padding: 0 7px 0 6px;
+}
+
+/* RenderPreview */
+
+.item {
+  aspect-ratio: 1;
+  border: 1px solid #dadce0;
+  border-radius: var(--border--radius-1);
+  position: relative;
+  transition: 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item:hover {
+  transform: translateY(-5px);
+}
+
+.item .imgThumbnail {
+  position: absolute;
+  display: block;
+  border-radius: var(--border--radius-1);
+  width: 100%;
+  height: 100%;
+}
+
+.item .iconThumbnail {
+  font-size: 40px;
+  color: #216fdb;
+}
+
+.icon {
+  font-size: 20px;
+  margin-right: 10px;
+  transform: translateY(-1px);
+}
+
+.fileNameContainer {
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 8px 10px 8px 16px;
+  border-top: 1px solid #eee;
+  width: 100%;
+  border-bottom-left-radius: var(--border--radius-1);
+  border-bottom-right-radius: var(--border--radius-1);
+}
+
+.fileNameContent {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.72);
+  font-size: 0.875rem;
+}
+
+.downloadBtn {
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.downloadBtn > .downloadIcon {
+  margin-right: 4px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+  .header .imgContainer {
+    align-items: flex-start;
+  }
+
+  .imgContainer > img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .heading h3 {
+    font-size: 1.5rem;
+  }
+
+  .heading h4 {
+    font-size: 1.25rem;
+  }
+
+  .heading p {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+  }
+
+  .flex {
+    padding: 0;
+    flex-direction: column;
+  }
+
+  .downloadBtn {
+    margin-top: 10px;
+  }
+  .navLink {
+    margin-right: 6px;
+  }
+
+  .navLink span {
+    font-size: 0.875rem;
+  }
+}
