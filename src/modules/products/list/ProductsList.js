@@ -18,9 +18,9 @@ import Input from "../../../component/input/Input";
 import Select from "../../../component/select/Select";
 
 function ProductsList() {
-  const [promotionId, setProductId] = useState("");
+  const [productId, setProductId] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [promotions, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 10,
@@ -37,7 +37,7 @@ function ProductsList() {
   };
 
   async function getProducts() {
-    let res = await axiosClient.get("http://localhost:3001/project/promotion");
+    let res = await axiosClient.get("http://localhost:3001/project/product");
     setProducts(res.data.data);
   }
 
@@ -68,19 +68,19 @@ function ProductsList() {
   }, []);
 
   useEffect(() => {
-    setPagination((pagination) => ({ ...pagination, totalRows: promotions.length }));
-  }, [promotions.length]);
+    setPagination((pagination) => ({ ...pagination, totalRows: products.length }));
+  }, [products.length]);
 
   useEffect(() => {
     setSeperatePage(
-      promotions.slice(
+      products.slice(
         (pagination.page - 1) * pagination.limit,
-        pagination.page * pagination.limit > promotions.length
+        pagination.page * pagination.limit > products.length
           ? undefined
           : pagination.page * pagination.limit
       )
     );
-  }, [promotions, pagination.limit, pagination.page]);
+  }, [products, pagination.limit, pagination.page]);
 
   const handleClickClose = () => setIsOpen(false);
 
@@ -91,7 +91,7 @@ function ProductsList() {
 
   const handleClickDeleteProduct = (deleteProductId) => {
     axiosClient
-      .delete(`http://localhost:3001/project/promotion/${deleteProductId}`)
+      .delete(`http://localhost:3001/project/product/${deleteProductId}`)
       .then((response) => {
         console.log(response.data);
         getProducts();
@@ -118,37 +118,37 @@ function ProductsList() {
       .catch((err) => console.log(err));
   };
 
-  const renderRows = (promotion, index, onClickDelete) => (
+  const renderRows = (product, index, onClickDelete) => (
     <tr
       style={{ backgroundColor: (index + 1) % 2 !== 0 ? "#f2edf3" : "#fff" }}
-      key={`${promotion.promotion_id} - ${index}`}
+      key={`${product.product_id} - ${index}`}
     >
-      <td>{promotion.title}</td>
-      <td>{promotion.description}</td>
-      <td>{promotion.supplier_name}</td>
-      <td>{promotion.category_name}</td>
-      <td>{promotion.brand_name}</td>
+      <td>{product.title}</td>
+      <td>{product.description}</td>
+      <td>{product.supplier_name}</td>
+      <td>{product.category_name}</td>
+      <td>{product.brand_name}</td>
       <td>
         <Link
           className={styles.iconAction}
-          to={`/promotions/${promotion.promotion_id}/documents`}
+          to={`/products/${product.product_id}/documents`}
         >
           <ImEye />
         </Link>
         <Link
           onClick={(e) => {
-            if (promotion.status === "final_closure") {
+            if (product.status === "final_closure") {
               e.preventDefault();
             }
           }}
-          className={clsx(styles.iconAction, promotion.status === "final_closure" && styles.active)}
-          to={`/promotions/update/${promotion.promotion_id}`}
+          className={clsx(styles.iconAction, product.status === "final_closure" && styles.active)}
+          to={`/products/update/${product.product_id}`}
         >
           <BiEditAlt />
         </Link>
         <RiDeleteBin5Line
           className={styles.iconAction}
-          onClick={() => onClickDelete(promotion.promotion_id)}
+          onClick={() => onClickDelete(product.product_id)}
         />
       </td>
     </tr>
@@ -162,14 +162,14 @@ function ProductsList() {
     e.preventDefault();
     const paramString = queryString.stringify(filters);
     axiosClient
-      .get(`http://localhost:3001/project/promotion?${paramString}`)
+      .get(`http://localhost:3001/project/product?${paramString}`)
       .then((res) => {
         setProducts(res.data.data);
       })
       .catch((err) => console.log(err));
   };
 
-  if (promotions.length === 0) {
+  if (products.length === 0) {
     return (
       <div>
         <Table loading={true} />
@@ -313,7 +313,7 @@ function ProductsList() {
         title="Confirm Information"
         message="Are you sure to delete this record?"
         onClose={handleClickClose}
-        onConfirm={() => handleClickDeleteProduct(promotionId)}
+        onConfirm={() => handleClickDeleteProduct(productId)}
       />
     </div>
   );
