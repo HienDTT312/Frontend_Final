@@ -10,7 +10,7 @@ import {
 import { IoInformationCircleOutline } from "react-icons/io5";
 import clsx from "clsx";
 
-import styles from "./PromotionForm.module.css";
+import styles from "./ImportForm.module.css";
 import Input from "../../../component/input/Input";
 import Button from "../../../component/button/Button";
 import Spinner from "../../../component/spinner/Spinner";
@@ -19,10 +19,10 @@ import Preview from "../../../component/preview/Preview";
 import checkRole from "../../../helpers/checkRole";
 import Popup from "../../../component/popup/Popup";
 
-function PromotionForm({ mode }) {
+function ImportForm({ mode }) {
   const navigate = useNavigate();
-  const { promotionId } = useParams();
-  const [promotion, setPromotion] = useState(null);
+  const { importtId } = useParams();
+  const [importt, setImport] = useState(null);
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
@@ -68,24 +68,24 @@ function PromotionForm({ mode }) {
     getCategories();
     getBrands();
     getSuppliers();
-    async function getOnePromotion() {
+    async function getOneImport() {
       const res = await axiosClient.get(
-        `http://localhost:3001/project/promotion/${promotionId}`
+        `http://localhost:3001/project/importt/${importtId}`
       );
-      setPromotion(res.data.data);
+      setImport(res.data.data);
       setOldDocsLength(res.data.data.documents.length);
       if (res.data.data.status === "final_closure") {
         alert(
-          "The status of promotion is final closure, You can not update this promotion"
+          "The status of importt is final closure, You can not update this importt"
         );
         navigate(-1);
       }
     }
 
     if (mode === "update") {
-      getOnePromotion();
+      getOneImport();
     } else if (mode === "create") {
-      return setPromotion({
+      return setImport({
         title: "",
         documents: [],
         description: "",
@@ -219,15 +219,15 @@ function PromotionForm({ mode }) {
 
   const handleOnFileChange = (target) => {
     for (let file of target.files) {
-      setPromotion((promotion) => {
-        return { ...promotion, documents: [...promotion.documents, file] };
+      setImport((importt) => {
+        return { ...importt, documents: [...importt.documents, file] };
       });
       setNewDocuments((newDocuments) => [...newDocuments, file]);
     }
   };
 
   const handleDeleteFile = (indexItem, docId) => {
-    // Delete old document of promotion
+    // Delete old document of importt
     if (docId) {
       axiosClient
         .delete(`http://localhost:3001/project/document/${docId}`)
@@ -235,10 +235,10 @@ function PromotionForm({ mode }) {
         .catch((err) => console.log(err));
       setOldDocsLength((oldDocsLength) => oldDocsLength - 1);
     }
-    setPromotion((promotion) => {
+    setImport((importt) => {
       return {
-        ...promotion,
-        documents: promotion.documents.filter((item, index) => {
+        ...importt,
+        documents: importt.documents.filter((item, index) => {
           return index !== indexItem;
         }),
       };
@@ -250,11 +250,11 @@ function PromotionForm({ mode }) {
 
   const handleOnChange = (target) => {
     console.log('target', target.name + 'value', target.value)
-    setPromotion({ ...promotion, [target.name]: target.value });
+    setImport({ ...importt, [target.name]: target.value });
   };
 
   const handleOnChangeTextArea = ({ target }) => {
-    setPromotion({ ...promotion, [target.name]: target.value });
+    setImport({ ...importt, [target.name]: target.value });
   };
 
   const handleOnChangeCheck = (target) => {
@@ -265,23 +265,23 @@ function PromotionForm({ mode }) {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("title", promotion.title);
-    formData.append("price", promotion.price);
-    formData.append("description", promotion.description);
-    formData.append("discount", promotion.discount);
-    formData.append("brand_id", promotion.brand_id);
-    formData.append("supplier_id", promotion.supplier_id);
-    formData.append("category_id", +promotion.category_id);
+    formData.append("title", importt.title);
+    formData.append("price", importt.price);
+    formData.append("description", importt.description);
+    formData.append("discount", importt.discount);
+    formData.append("brand_id", importt.brand_id);
+    formData.append("supplier_id", importt.supplier_id);
+    formData.append("category_id", +importt.category_id);
     if (mode === "create") {
       axiosClient
-        .post(`http://localhost:3001/project/promotion`, formData)
-        .then((res) => navigate("/promotions/view", { replace: true }))
+        .post(`http://localhost:3001/project/importt`, formData)
+        .then((res) => navigate("/importts/view", { replace: true }))
         .catch((err) => console.log(err));
     } else {
-      formData.append("promotion_id", promotion.promotion_id);
+      formData.append("importt_id", importt.importt_id);
       axiosClient
-        .put(`http://localhost:3001/project/promotion/${promotion.promotion_id}`, formData)
-        .then((res) => navigate("/promotions/view", { replace: true }))
+        .put(`http://localhost:3001/project/importt/${importt.importt_id}`, formData)
+        .then((res) => navigate("/importts/view", { replace: true }))
         .catch((err) => console.log(err));
     }
   };
@@ -295,7 +295,7 @@ function PromotionForm({ mode }) {
     setAgree(true);
   };
 
-  if (!promotion) {
+  if (!importt) {
     return (
       <div>
         <Spinner />
@@ -306,7 +306,7 @@ function PromotionForm({ mode }) {
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.title}>
-        {mode === "update" ? `Update Promotion` : `Create Promotion`}
+        {mode === "update" ? `Update Import` : `Create Import`}
       </h2>
       <form onSubmit={handleSubmit}>
         {/* Title */}
@@ -321,7 +321,7 @@ function PromotionForm({ mode }) {
               styles.formInput,
               "title",
               "text",
-              promotion.title,
+              importt.title,
               "Your Title",
               undefined
             )}
@@ -338,7 +338,7 @@ function PromotionForm({ mode }) {
               styles.formInput,
               "price",
               "text",
-              promotion.price,
+              importt.price,
               "Your price",
               undefined
             )}
@@ -355,7 +355,7 @@ function PromotionForm({ mode }) {
               styles.formInput,
               "discount",
               "text",
-              promotion.discount,
+              importt.discount,
               "Your discount",
               undefined
             )}
@@ -368,7 +368,7 @@ function PromotionForm({ mode }) {
           </label>
           <Select
             name="category_id"
-            defaultValue={promotion.category_id !== "" ? promotion.category_id : ""}
+            defaultValue={importt.category_id !== "" ? importt.category_id : ""}
             id="category"
             onChange={handleOnChange}
           >
@@ -392,7 +392,7 @@ function PromotionForm({ mode }) {
           </label>
           <Select
             name="brand_id"
-            defaultValue={promotion.brand_id !== "" ? promotion.brand_id : ""}
+            defaultValue={importt.brand_id !== "" ? importt.brand_id : ""}
             id="brand"
             onChange={handleOnChange}
           >
@@ -416,7 +416,7 @@ function PromotionForm({ mode }) {
           </label>
           <Select
             name="supplier_id"
-            defaultValue={promotion.supplier_id !== "" ? promotion.supplier_id : ""}
+            defaultValue={importt.supplier_id !== "" ? importt.supplier_id : ""}
             id="supplier"
             onChange={handleOnChange}
           >
@@ -445,7 +445,7 @@ function PromotionForm({ mode }) {
             placeholder="Your description"
             className={styles.description}
             id="description"
-            value={promotion.description}
+            value={importt.description}
           ></textarea>
         </div>
         {/* Brands */}
@@ -461,4 +461,4 @@ function PromotionForm({ mode }) {
   );
 }
 
-export default PromotionForm;
+export default ImportForm;

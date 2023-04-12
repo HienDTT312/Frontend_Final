@@ -8,19 +8,19 @@ import { HiDownload } from "react-icons/hi";
 import queryString from "query-string";
 import clsx from "clsx";
 
-import styles from "./PromotionsList.module.css";
+import styles from "./ImporttsList.module.css";
 import Popup from "../../../component/popup/Popup";
 import Table from "../../../component/table/Table";
-import PromotionTableHead from "./table-head";
+import ImporttTableHead from "./table-head";
 import Button from "../../../component/button/Button";
 import Pagination from "../../../component/pagination/Pagination";
 import Input from "../../../component/input/Input";
 import Select from "../../../component/select/Select";
 
-function PromotionsList() {
-  const [productId, setPromotionId] = useState("");
+function ImporttsList() {
+  const [productId, setImporttId] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [products, setPromotions] = useState([]);
+  const [products, setImportts] = useState([]);
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 10,
@@ -36,9 +36,9 @@ function PromotionsList() {
     setPagination({ ...pagination, page: newPage });
   };
 
-  async function getPromotions() {
+  async function getImportts() {
     let res = await axiosClient.get("http://localhost:3001/project/product");
-    setPromotions(res.data.data);
+    setImportts(res.data.data);
   }
 
   useEffect(() => {
@@ -49,12 +49,6 @@ function PromotionsList() {
       setCategories(res.data.data);
     }
 
-    async function getDepartments() {
-      const res = await axiosClient.get(
-        "http://localhost:3001/project/department"
-      );
-      setDepartments(res.data.data);
-    }
 
     async function getBrands() {
       const res = await axiosClient.get("http://localhost:3001/project/brand");
@@ -62,9 +56,8 @@ function PromotionsList() {
     }
 
     getCategories();
-    getDepartments();
     getBrands();
-    getPromotions();
+    getImportts();
   }, []);
 
   useEffect(() => {
@@ -84,17 +77,17 @@ function PromotionsList() {
 
   const handleClickClose = () => setIsOpen(false);
 
-  const onClickDelete = (deletePromotionId) => {
+  const onClickDelete = (deleteImporttId) => {
     setIsOpen(true);
-    setPromotionId(deletePromotionId);
+    setImporttId(deleteImporttId);
   };
 
-  const handleClickDeletePromotion = (deletePromotionId) => {
+  const handleClickDeleteImportt = (deleteImporttId) => {
     axiosClient
-      .delete(`http://localhost:3001/project/product/${deletePromotionId}`)
+      .delete(`http://localhost:3001/project/product/${deleteImporttId}`)
       .then((response) => {
         console.log(response.data);
-        getPromotions();
+        getImportts();
       })
       .catch((err) => console.log(err));
   };
@@ -164,7 +157,7 @@ function PromotionsList() {
     axiosClient
       .get(`http://localhost:3001/project/product?${paramString}`)
       .then((res) => {
-        setPromotions(res.data.data);
+        setImportts(res.data.data);
       })
       .catch((err) => console.log(err));
   };
@@ -281,14 +274,14 @@ function PromotionsList() {
             type={"submit"}
             buttonSize={"btnMedium"}
             buttonStyle={"btnPrimarySolid"}
-            onClick={() => getPromotions()}
+            onClick={() => getImportts()}
           >
             Update Table
           </Button>
         </form>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h2>Promotion List</h2>
+        <h2>Importt List</h2>
         <Button
           className={styles.downloadBtn}
           type={"button"}
@@ -302,7 +295,7 @@ function PromotionsList() {
       </div>
       <Table
         loading={false}
-        head={<PromotionTableHead />}
+        head={<ImporttTableHead />}
         renderRows={renderRows}
         onClickDeleteButton={onClickDelete}
         data={seperatePage}
@@ -313,10 +306,10 @@ function PromotionsList() {
         title="Confirm Information"
         message="Are you sure to delete this record?"
         onClose={handleClickClose}
-        onConfirm={() => handleClickDeletePromotion(productId)}
+        onConfirm={() => handleClickDeleteImportt(productId)}
       />
     </div>
   );
 }
 
-export default PromotionsList;
+export default ImporttsList;
