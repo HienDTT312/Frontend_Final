@@ -1,8 +1,8 @@
 import React from "react";
-import ProductsList from "./list/PromotionsList";
+import ImportsList from "./list/ImportsList";
 
-function ProductList() {
-  return <ProductsList />;
+function ImportList() {
+  return <ImportsList />;
 }
 
-export default ProductList;
+export default ImportList;

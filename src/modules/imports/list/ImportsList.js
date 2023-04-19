@@ -8,7 +8,7 @@ import { HiDownload } from "react-icons/hi";
 import queryString from "query-string";
 import clsx from "clsx";
 
-import styles from "./ImporttsList.module.css";
+import styles from "./ImportsList.module.css";
 import Popup from "../../../component/popup/Popup";
 import Table from "../../../component/table/Table";
 import ImporttTableHead from "./table-head";
@@ -18,9 +18,9 @@ import Input from "../../../component/input/Input";
 import Select from "../../../component/select/Select";
 
 function ImporttsList() {
-  const [productId, setImporttId] = useState("");
+  const [importId, setImporttId] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [products, setImportts] = useState([]);
+  const [imports, setImportts] = useState([]);
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 10,
@@ -37,7 +37,7 @@ function ImporttsList() {
   };
 
   async function getImportts() {
-    let res = await axiosClient.get("http://localhost:3001/project/product");
+    let res = await axiosClient.get("http://localhost:3001/project/import");
     setImportts(res.data.data);
   }
 
@@ -61,19 +61,19 @@ function ImporttsList() {
   }, []);
 
   useEffect(() => {
-    setPagination((pagination) => ({ ...pagination, totalRows: products.length }));
-  }, [products.length]);
+    setPagination((pagination) => ({ ...pagination, totalRows: imports.length }));
+  }, [imports.length]);
 
   useEffect(() => {
     setSeperatePage(
-      products.slice(
+      imports.slice(
         (pagination.page - 1) * pagination.limit,
-        pagination.page * pagination.limit > products.length
+        pagination.page * pagination.limit > imports.length
           ? undefined
           : pagination.page * pagination.limit
       )
     );
-  }, [products, pagination.limit, pagination.page]);
+  }, [imports, pagination.limit, pagination.page]);
 
   const handleClickClose = () => setIsOpen(false);
 
@@ -84,7 +84,7 @@ function ImporttsList() {
 
   const handleClickDeleteImportt = (deleteImporttId) => {
     axiosClient
-      .delete(`http://localhost:3001/project/product/${deleteImporttId}`)
+      .delete(`http://localhost:3001/project/import/${deleteImporttId}`)
       .then((response) => {
         console.log(response.data);
         getImportts();
@@ -111,37 +111,38 @@ function ImporttsList() {
       .catch((err) => console.log(err));
   };
 
-  const renderRows = (product, index, onClickDelete) => (
+  const renderRows = (importt, index, onClickDelete) => (
     <tr
       style={{ backgroundColor: (index + 1) % 2 !== 0 ? "#f2edf3" : "#fff" }}
-      key={`${product.product_id} - ${index}`}
+      key={`${importt.import_id} - ${index}`}
     >
-      <td>{product.title}</td>
-      <td>{product.description}</td>
-      <td>{product.supplier_name}</td>
-      <td>{product.category_name}</td>
-      <td>{product.brand_name}</td>
+      <td>{importt.import_id}</td>
+      <td>{importt.description}</td>
+      <td>{importt.supplier_id}</td>
+      <td>{importt.product_id}</td>
+      <td>{importt.price}</td>
+      <td>{importt.amount}</td>
       <td>
         <Link
           className={styles.iconAction}
-          to={`/products/${product.product_id}/documents`}
+          to={`/imports/${importt.import_id}/documents`}
         >
           <ImEye />
         </Link>
         <Link
           onClick={(e) => {
-            if (product.status === "final_closure") {
+            if (importt.status === "final_closure") {
               e.preventDefault();
             }
           }}
-          className={clsx(styles.iconAction, product.status === "final_closure" && styles.active)}
-          to={`/products/update/${product.product_id}`}
+          className={clsx(styles.iconAction, importt.status === "final_closure" && styles.active)}
+          to={`/imports/update/${importt.import_id}`}
         >
           <BiEditAlt />
         </Link>
         <RiDeleteBin5Line
           className={styles.iconAction}
-          onClick={() => onClickDelete(product.product_id)}
+          onClick={() => onClickDelete(importt.import_id)}
         />
       </td>
     </tr>
@@ -155,14 +156,14 @@ function ImporttsList() {
     e.preventDefault();
     const paramString = queryString.stringify(filters);
     axiosClient
-      .get(`http://localhost:3001/project/product?${paramString}`)
+      .get(`http://localhost:3001/project/import?${paramString}`)
       .then((res) => {
         setImportts(res.data.data);
       })
       .catch((err) => console.log(err));
   };
 
-  if (products.length === 0) {
+  if (imports.length === 0) {
     return (
       <div>
         <Table loading={true} />
@@ -306,7 +307,7 @@ function ImporttsList() {
         title="Confirm Information"
         message="Are you sure to delete this record?"
         onClose={handleClickClose}
-        onConfirm={() => handleClickDeleteImportt(productId)}
+        onConfirm={() => handleClickDeleteImportt(importId)}
       />
     </div>
   );

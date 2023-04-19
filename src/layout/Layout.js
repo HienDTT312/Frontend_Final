@@ -32,6 +32,12 @@ import Customer from "../pages/customer/Customer";
 import UpdatePromotion from "../pages/promotion/update/UpdatePromotion";
 import CreatePromotion from "../pages/promotion/create/CreatePromotion";
 import Promotion from "../pages/promotion/Promotion";
+import UpdateSupport from "../pages/support/update/UpdateSupport";
+import CreateSupport from "../pages/support/create/CreateSupport";
+import Support from "../pages/support/Support";
+import UpdateImport from "../pages/import/update/UpdateProduct";
+import Import from "../pages/import/Import";
+import CreateImport from "../pages/import/create/CreateImport";
 
 
 export default function Layout() {
@@ -98,6 +104,13 @@ export default function Layout() {
               <Route path="create" element={<CreateCategory />} />
               <Route path="view" element={<Category />} />
             </Route>
+            <Route path="/supports">
+              <Route path="update">
+                <Route path=":supportId" element={<UpdateSupport />} />
+              </Route>
+              <Route path="create" element={<CreateSupport />} />
+              <Route path="view" element={<Support />} />
+            </Route>
             <Route path="/promotions">
               <Route path="update">
                 <Route path=":promotionId" element={<UpdatePromotion />} />
@@ -120,6 +133,14 @@ export default function Layout() {
               </Route>
               <Route path="view" element={<Customer />} />
               <Route path="create" element={<CreateCustomer />} />
+            </Route>
+            <Route path="/imports">
+              <Route path="profile" element={<Profile />} />
+              <Route path="update">
+                <Route path=":username" element={<UpdateImport />} />
+              </Route>
+              <Route path="view" element={<Import />} />
+              <Route path="create" element={<CreateImport />} />
             </Route>
             <Route path="/products">
               <Route path=":productId/*" element={<ProductDetail />}></Route>

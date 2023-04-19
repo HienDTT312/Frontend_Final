@@ -7,7 +7,6 @@ import {
   AiFillCloseCircle,
   AiFillFile,
 } from "react-icons/ai";
-import { IoInformationCircleOutline } from "react-icons/io5";
 import clsx from "clsx";
 
 import styles from "./ImportForm.module.css";
@@ -24,7 +23,7 @@ function ImportForm({ mode }) {
   const { importtId } = useParams();
   const [importt, setImport] = useState(null);
   const [categories, setCategories] = useState([]);
-  const [brands, setBrands] = useState([]);
+  const [products, setProducts] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
   const [agreements, setAggrements] = useState([]);
   const [newDocuments, setNewDocuments] = useState([]);
@@ -42,11 +41,11 @@ function ImportForm({ mode }) {
     setCategories(res.data.data);
   }
 
-  async function getBrands() {
+  async function getProducts() {
     const res = await axiosClient.get(
-      `http://localhost:3001/project/brand`
+      `http://localhost:3001/project/product`
     );
-    setBrands(res.data.data);
+    setProducts(res.data.data);
   }
 
   async function getSuppliers() {
@@ -66,11 +65,11 @@ function ImportForm({ mode }) {
   useEffect(() => {
     getAggrements();
     getCategories();
-    getBrands();
+    getProducts();
     getSuppliers();
     async function getOneImport() {
       const res = await axiosClient.get(
-        `http://localhost:3001/project/importt/${importtId}`
+        `http://localhost:3001/project/import/${importtId}`
       );
       setImport(res.data.data);
       setOldDocsLength(res.data.data.documents.length);
@@ -91,7 +90,7 @@ function ImportForm({ mode }) {
         description: "",
         category_id: "",
         supplier_name: "",
-        brand_name: "",
+        product_name: "",
       });
     }
   }, []);
@@ -267,20 +266,20 @@ function ImportForm({ mode }) {
     const formData = new FormData();
     formData.append("title", importt.title);
     formData.append("price", importt.price);
+    formData.append("amount", importt.amount);
     formData.append("description", importt.description);
-    formData.append("discount", importt.discount);
-    formData.append("brand_id", importt.brand_id);
+    formData.append("amount", importt.amount);
+    formData.append("product_id", importt.product_id);
     formData.append("supplier_id", importt.supplier_id);
-    formData.append("category_id", +importt.category_id);
     if (mode === "create") {
       axiosClient
-        .post(`http://localhost:3001/project/importt`, formData)
+        .post(`http://localhost:3001/project/import`, formData)
         .then((res) => navigate("/importts/view", { replace: true }))
         .catch((err) => console.log(err));
     } else {
       formData.append("importt_id", importt.importt_id);
       axiosClient
-        .put(`http://localhost:3001/project/importt/${importt.importt_id}`, formData)
+        .put(`http://localhost:3001/project/import/${importt.importt_id}`, formData)
         .then((res) => navigate("/importts/view", { replace: true }))
         .catch((err) => console.log(err));
     }
@@ -345,18 +344,18 @@ function ImportForm({ mode }) {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="discount" className={styles.label}>
+          <label htmlFor="amount" className={styles.label}>
             Amount
           </label>
           <Input
             onChange={handleOnChange}
             config={configInput(
-              "discount",
+              "amount",
               styles.formInput,
-              "discount",
+              "amount",
               "text",
-              importt.discount,
-              "Your discount",
+              importt.amount,
+              "Your amount",
               undefined
             )}
           />
@@ -385,31 +384,31 @@ function ImportForm({ mode }) {
             ))}
           </Select>
         </div>
-         {/* Brand */}
+         {/* Product */}
          <div className={styles.formGroup}>
-          <label htmlFor="brand" className={styles.label}>
-            Brand
+          <label htmlFor="product" className={styles.label}>
+            Product
           </label>
           <Select
-            name="brand_id"
-            defaultValue={importt.brand_id !== "" ? importt.brand_id : ""}
-            id="brand"
+            name="product_id"
+            defaultValue={importt.product_id !== "" ? importt.product_id : ""}
+            id="product"
             onChange={handleOnChange}
           >
-            <option value="" disabled>
-              Choose your brand...
+            <option value="" disabled hidden>
+              Choose your product...
             </option>
-            {brands.map((brand, index) => (
+            {products.map((product, index) => (
               <option
-                key={`${brand.brand_id} ${index}`}
-                value={brand.brand_id}
+                key={`${product.product_id} ${index}`}
+                value={product.product_id}
               >
-                {brand.brand_name}
+                {product.title}
               </option>
             ))}
           </Select>
         </div>
-        {/* Brand */}
+        {/* Product */}
         <div className={styles.formGroup}>
           <label htmlFor="supplier" className={styles.label}>
             Supplier
@@ -420,7 +419,7 @@ function ImportForm({ mode }) {
             id="supplier"
             onChange={handleOnChange}
           >
-            <option value="" disabled>
+            <option value="" disabled hidden>
               Choose your supplier...
             </option>
             {suppliers.map((supplier, index) => (
@@ -448,7 +447,7 @@ function ImportForm({ mode }) {
             value={importt.description}
           ></textarea>
         </div>
-        {/* Brands */}
+        {/* Products */}
         <Button
           type={"submit"}
           buttonSize={"btnLarge"}

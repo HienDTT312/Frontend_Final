@@ -40,10 +40,10 @@ const IMG_EXTENSIONS = [
 ];
 
 function ProductDetail() {
-  const { productId } = useParams();
+  const { importtId } = useParams();
   const [commentId, setCommentId] = useState(null);
   const [commentContent, setCommentContent] = useState(null);
-  const [product, setProduct] = useState(null);
+  const [importt, setProduct] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [comments, setComments] = useState([]);
   const [onFocusLike, setOnFocusLike] = useState(false);
@@ -51,20 +51,20 @@ function ProductDetail() {
   const [countLike, setCountLike] = useState();
   const [countDisLike, setCountDisLike] = useState();
 
-  function checkCount(product) {
+  function checkCount(importt) {
     // Check count like
-    product.count.length === 1
-      ? setCountLike(product.count[0].count)
+    importt.count.length === 1
+      ? setCountLike(importt.count[0].count)
       : setCountLike(0);
     // Check count dislike
-    product.count.length === 2
-      ? setCountDisLike(product.count[1].count)
+    importt.count.length === 2
+      ? setCountDisLike(importt.count[1].count)
       : setCountDisLike(0);
   }
 
   async function getProductComment() {
     let res = await axiosClient.get(
-      `http://localhost:3001/project/comment/${productId}`
+      `http://localhost:3001/project/comment/${importtId}`
     );
     setComments(res.data.data);
   }
@@ -72,7 +72,7 @@ function ProductDetail() {
   useEffect(() => {
     async function getProduct() {
       let res = await axiosClient.get(
-        `http://localhost:3001/project/product/${productId}`
+        `http://localhost:3001/project/import/${importtId}`
       );
       setProduct(res.data.data);
       checkCount(res.data.data);
@@ -111,7 +111,7 @@ function ProductDetail() {
   const handleSubmitComment = (comment, statusSwitch) => {
     axiosClient
       .post(`http://localhost:3001/project/comment`, {
-        product_id: product.product_id,
+        importt_id: importt.importt_id,
         anonymous: statusSwitch,
         comment: comment,
       })
@@ -157,7 +157,7 @@ function ProductDetail() {
 
   async function vote(action) {
     const res = await axiosClient.post("http://localhost:3001/project/vote", {
-      product_id: product.product_id,
+      importt_id: importt.importt_id,
       vote: action,
     });
     console.log(res.data);
@@ -197,7 +197,7 @@ function ProductDetail() {
 
   const handleClickDownloadAll = () => {
     axiosClient
-      .get(`http://localhost:3001/project/download-all/${product.product_id}`, { responseType: "blob"})
+      .get(`http://localhost:3001/project/download-all/${importt.importt_id}`, { responseType: "blob"})
       .then((res) => {
 
         const url = window.URL.createObjectURL(new Blob([res.data]));
@@ -210,7 +210,7 @@ function ProductDetail() {
       .catch((err) => console.log(err));
   };
 
-  if (product === null) {
+  if (importt === null) {
     return (
       <div>
         <Spinner />
@@ -222,36 +222,36 @@ function ProductDetail() {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Product Detail</h2>
-      <div className={styles.productContainer}>
+      <div className={styles.importtContainer}>
         <div className={styles.header}>
           <div className={styles.imgContainer}>
             <img
-              src={`http://localhost:3001/${product.avatar}`}
-              alt="avtar product"
+              src={`http://localhost:3001/${importt.avatar}`}
+              alt="avtar importt"
             />
           </div>
           <div className={styles.heading}>
-            <h3>Title: {product.title}</h3>
-            <h4>Created by: {product.full_name}</h4>
-            <p>Category: {product.category_name}</p>
-            <p>Department: {product.department_name}</p>
-            <p>Brand: {product.brand_name}</p>
+            <h3>Title: {importt.title}</h3>
+            <h4>Created by: {importt.full_name}</h4>
+            <p>Category: {importt.category_name}</p>
+            <p>Department: {importt.department_name}</p>
+            <p>Brand: {importt.brand_name}</p>
           </div>
         </div>
         <div className={styles.body}>
-          <p className={styles.description}>Description: {product.description}</p>
+          <p className={styles.description}>Description: {importt.description}</p>
           <div className={styles.flex}>
             <div className={styles.actionContainer}>
               <div
                 className={clsx(
                   styles.actionItem,
-                  product.status && styles.active
+                  importt.status && styles.active
                 )}
               >
                 <div
                   className={styles.actionBtn}
                   onClick={(e) => {
-                    if (product.status === "final_closure") {
+                    if (importt.status === "final_closure") {
                       return e.preventDefault();
                     }
                     handleClickLike();
@@ -269,13 +269,13 @@ function ProductDetail() {
               <div
                 className={clsx(
                   styles.actionItem,
-                  product.status && styles.active
+                  importt.status && styles.active
                 )}
               >
                 <div
                   className={styles.actionBtn}
                   onClick={(e) => {
-                    if (product.status === "final_closure") {
+                    if (importt.status === "final_closure") {
                       return e.preventDefault();
                     }
                     handleClickDisLike();
@@ -307,7 +307,7 @@ function ProductDetail() {
               <NavLink
                 to={`${nav.name}`}
                 onClick={(e) => {
-                  if (index === 1 && product.status === "final_closure") {
+                  if (index === 1 && importt.status === "final_closure") {
                     e.preventDefault();
                   }
                 }}
@@ -332,7 +332,7 @@ function ProductDetail() {
                 element={
                   <Preview
                     onClickItem={onClickDownload}
-                    data={product.documents}
+                    data={importt.documents}
                     renderBody={renderPreview}
                   />
                 }
@@ -355,7 +355,7 @@ function ProductDetail() {
                         handleClickDeleteComment(
                           commentId,
                           commentContent,
-                          productId
+                          importtId
                         )
                       }
                     />

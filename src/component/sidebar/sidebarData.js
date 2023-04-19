@@ -184,6 +184,19 @@ const SidebarAdmin = [
       },
     ],
   },
+  {
+    title: "Support",
+    path: "/supports",
+    icon: <MdPolicy />,
+    iconClosed: <RiArrowDownSFill />,
+    iconOpened: <RiArrowUpSFill />,
+    subNav: [
+      {
+        title: "View",
+        path: "/supports/view",
+      },
+    ],
+  },
 ];
 
 const SidebarQAM = [
