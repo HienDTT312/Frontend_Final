@@ -71,6 +71,7 @@ function BrandsList() {
       .delete(`http://localhost:3001/project/brand/${deleteBrandId}`)
       .then((response) => {
         console.log(response.data);
+        setIsOpen(false);
         getBrands();
       })
       .catch((err) => console.log(err));
@@ -94,8 +95,8 @@ function BrandsList() {
         <td>{brand.brand_name}</td>
         <td>{brand.brand_address}</td>
         <td>{brand.manager}</td>
-        <td>{brand.status}</td>
         <td>{brand.phone_number}</td>
+        <td>{brand.status}</td>
         <td>{brand.created_date}</td>
         <td>{brand.updated_date}</td>
         {/* <td>{brand.status}</td> */}

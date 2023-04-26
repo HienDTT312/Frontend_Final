@@ -62,7 +62,7 @@ function ProductsList() {
     }
 
     getCategories();
-    getDepartments();
+    // getDepartments();
     getBrands();
     getProducts();
   }, []);
@@ -94,6 +94,8 @@ function ProductsList() {
       .delete(`http://localhost:3001/project/product/${deleteProductId}`)
       .then((response) => {
         console.log(response.data);
+        setIsOpen(false);
+
         getProducts();
       })
       .catch((err) => console.log(err));
@@ -126,8 +128,12 @@ function ProductsList() {
       <td>{product.title}</td>
       <td>{product.description}</td>
       <td>{product.supplier_name}</td>
-      <td>{product.category_name}</td>
       <td>{product.brand_name}</td>
+      <td>{product.category_name}</td>
+      <td>{product.price}</td>
+      <td>{product.author}</td>
+      <td>{product.amount}</td>
+
       <td>
         <Link
           className={styles.iconAction}
@@ -198,7 +204,7 @@ function ProductsList() {
                 config={{
                   name: "full_name",
                   type: "text",
-                  placeholder: "Type Full Name",
+                  placeholder: "Type Description",
                   className: styles.filterInput,
                 }}
               />
@@ -222,34 +228,6 @@ function ProductsList() {
                   ))}
                 </Select>
                 <Select
-                  name="status"
-                  defaultValue={""}
-                  onChange={handleOnChange}
-                  required={false}
-                >
-                  <option value="">Select status</option>
-                  <option value="first_closure">First Closure</option>
-                  <option value="final_closure">Final Closure</option>
-                </Select>
-              </div>
-              <div className={styles.rightSecond}>
-                <Select
-                  name="department_id"
-                  defaultValue={""}
-                  required={false}
-                  onChange={handleOnChange}
-                >
-                  <option value="">Select department</option>
-                  {departments.map((item, index) => (
-                    <option
-                      value={item.department_id}
-                      key={`${item.department_name} ${index}`}
-                    >
-                      {item.department_name}
-                    </option>
-                  ))}
-                </Select>
-                <Select
                   name="brand_id"
                   defaultValue={""}
                   required={false}
@@ -258,13 +236,17 @@ function ProductsList() {
                   <option value="">Select brand</option>
                   {brands.map((item, index) => (
                     <option
-                      value={item.brand_id}
+                      value={item.brand_name}
                       key={`${item.brand_name} ${index}`}
                     >
                       {item.brand_name}
                     </option>
                   ))}
                 </Select>
+              </div>
+              <div className={styles.rightSecond}>
+
+
               </div>
             </div>
           </div>

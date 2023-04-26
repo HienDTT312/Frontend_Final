@@ -67,6 +67,7 @@ function CustomersList({ currentPage, onCurrentPage, onPageSize }) {
       .delete(`http://localhost:3001/project/customer/${deleteCustomerId}`)
       .then((response) => {
         console.log(response.data);
+        setIsOpen(false);
         getCustomers();
       })
       .catch((err) => console.log(err));
@@ -85,7 +86,7 @@ function CustomersList({ currentPage, onCurrentPage, onPageSize }) {
         />
       </td>
       <td>{customer.full_name}</td>
-      <td>{customer.username}</td>
+      <td>{customer.email}</td>
       <td>{customer.phone}</td>
       <td>
         {customer.profile_status ? (
@@ -97,7 +98,7 @@ function CustomersList({ currentPage, onCurrentPage, onPageSize }) {
       <td>
         <Link
           className={styles.iconAction}
-          to={`/customers/update/${customer.username}`}
+          to={`/customers/update/${customer.email}`}
         >
           <BiEditAlt />
         </Link>

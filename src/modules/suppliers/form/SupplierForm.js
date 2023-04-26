@@ -73,9 +73,10 @@ function SupplierForm({ mode }) {
     e.preventDefault();
     if (mode === "update") {
       return axiosClient
-        .put(`http://localhost:3001/project/supplier`, {
+        .put(`http://localhost:3001/project/supplier/`, {
           supplier_name: supplier.supplier_name,
           status: supplier.supplier_status,
+          supplier_id: supplier.supplier_id,
           phone_number: supplier.supplier_number,
           supplier_address: supplier.supplier_address,
           manager: supplier.supplier_manager,
@@ -127,7 +128,7 @@ function SupplierForm({ mode }) {
               styles.formInput,
               "supplier_name",
               "text",
-              supplier.name,
+              supplier.supplier_name,
               "Your supplier name"
             )}
           />
@@ -155,11 +156,11 @@ function SupplierForm({ mode }) {
           <Input
             onChange={handleOnChange}
             config={configInput(
-              "phone",
+              "supplier_number",
               styles.formInput,
               "supplier_number",
               "text",
-              supplier.supplier_number,
+              supplier.phone_number,
               "Your supplier number"
             )}
           />
@@ -171,11 +172,11 @@ function SupplierForm({ mode }) {
           <Input
             onChange={handleOnChange}
             config={configInput(
-              "manager",
+              "supplier_manager",
               styles.formInput,
               "supplier_manager",
               "text",
-              supplier.supplier_manager,
+              supplier.manager,
               "Your supplier manager's name"
             )}
           />
@@ -187,11 +188,11 @@ function SupplierForm({ mode }) {
           <Input
             onChange={handleOnChange}
             config={configInput(
-              "status",
+              "supplier_status",
               styles.formInput,
               "supplier_status",
               "text",
-              supplier.supplier_status,
+              supplier.status,
               "Your supplier status"
             )}
           />

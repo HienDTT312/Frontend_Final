@@ -101,22 +101,6 @@ function SupportForm({ mode }) {
       </h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
-          <label htmlFor="name" className={styles.label}>
-            Support Name
-          </label>
-          <Input
-            onChange={handleOnChange}
-            config={configInput(
-              "name",
-              styles.formInput,
-              "support_name",
-              "text",
-              support.support_name,
-              "Your support name"
-            )}
-          />
-        </div>
-        <div className={styles.formGroup}>
           <label htmlFor="description" className={styles.label}>
             Description
           </label>
@@ -128,6 +112,22 @@ function SupportForm({ mode }) {
             id="description"
             value={support.description}
           ></textarea>
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="status" className={styles.label}>
+            Support Status
+          </label>
+          <Input
+            onChange={handleOnChange}
+            config={configInput(
+              "status",
+              styles.formInput,
+              "status",
+              "text",
+              support.status,
+              "Your support status"
+            )}
+          />
         </div>
         {/* <div className={styles.formGroup}>
           <label htmlFor="department" className={styles.label}>

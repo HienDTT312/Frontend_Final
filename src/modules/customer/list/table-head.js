@@ -4,7 +4,7 @@ function TableHead() {
       <tr>
         <th>User</th>
         <th>Full Name</th>
-        <th>Email</th>
+        <th>Username</th>
         <th>Phone</th>
         <th>Profile Status</th>
         <th>Action</th>

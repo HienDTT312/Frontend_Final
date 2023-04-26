@@ -64,7 +64,7 @@ export default function Header({ onClickSlide, onClickExpand, statusExpand }) {
           className={clsx(styles.logo)}
         >
           <ImStack style={{ fontSize: "26px" }} />
-          {statusExpand && <p className={clsx(styles.logoText)}>Project</p>}
+          {statusExpand && <p className={clsx(styles.logoText)}>Bookstore</p>}
         </Link>
       </div>
       <div className={styles.right}>

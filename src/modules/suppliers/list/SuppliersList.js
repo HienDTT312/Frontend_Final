@@ -71,6 +71,8 @@ function SuppliersList() {
       .delete(`http://localhost:3001/project/supplier/${deleteSupplierId}`)
       .then((response) => {
         console.log(response.data);
+        setIsOpen(false);
+
         getSuppliers();
       })
       .catch((err) => console.log(err));
@@ -94,8 +96,8 @@ function SuppliersList() {
         <td>{supplier.supplier_name}</td>
         <td>{supplier.supplier_address}</td>
         <td>{supplier.manager}</td>
-        <td>{supplier.status}</td>
         <td>{supplier.phone_number}</td>
+        <td>{supplier.status}</td>
         <td>{supplier.created_date}</td>
         <td>{supplier.updated_date}</td>
         {/* <td>{supplier.status}</td> */}

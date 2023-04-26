@@ -75,6 +75,7 @@ function BrandForm({ mode }) {
       return axiosClient
         .put(`http://localhost:3001/project/brand`, {
           brand_name: brand.brand_name,
+          brand_id: brand.brand_id,
           status: brand.brand_status,
           phone_number: brand.brand_number,
           brand_address: brand.brand_address,
@@ -127,7 +128,7 @@ function BrandForm({ mode }) {
               styles.formInput,
               "brand_name",
               "text",
-              brand.name,
+              brand.brand_name,
               "Your brand name"
             )}
           />
@@ -159,7 +160,7 @@ function BrandForm({ mode }) {
               styles.formInput,
               "brand_number",
               "text",
-              brand.brand_number,
+              brand.phone_number,
               "Your brand number"
             )}
           />
@@ -175,7 +176,7 @@ function BrandForm({ mode }) {
               styles.formInput,
               "brand_manager",
               "text",
-              brand.brand_manager,
+              brand.manager,
               "Your brand manager's name"
             )}
           />
@@ -191,7 +192,7 @@ function BrandForm({ mode }) {
               styles.formInput,
               "brand_status",
               "text",
-              brand.brand_status,
+              brand.status,
               "Your brand status"
             )}
           />

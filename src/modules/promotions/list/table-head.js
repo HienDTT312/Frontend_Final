@@ -5,7 +5,7 @@ function TableHead() {
         <th>Title</th>
         <th>Description</th>
         <th>Category</th>
-        <th>Brand</th>
+        <th>Discount</th>
         <th>Supplier</th>
         <th>Actions</th>
       </tr>

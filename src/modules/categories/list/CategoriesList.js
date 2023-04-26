@@ -57,12 +57,18 @@ function CategoriesList({ currentPage, onCurrentPage, onPageSize }) {
     setCateID(deleteCateId);
   };
 
+  async function getCategories() {
+    let res = await axiosClient.get("http://localhost:3001/project/category");
+    setCategories(res.data.data);
+  }
+
   const handleClickDeleteCate = (deleteCateId) => {
     axiosClient
       .delete(`http://localhost:3001/project/category/${deleteCateId}`)
       .then((response) => {
         console.log(response.data);
-        navigate("/categories/view", { replace: true });
+        setIsOpen(false);
+        getCategories();
       })
       .catch((err) => console.log(err));
   };
@@ -73,8 +79,6 @@ function CategoriesList({ currentPage, onCurrentPage, onPageSize }) {
       key={`${category.category_id} - ${index}`}
     >
       <td>{category.category_name}</td>
-      <td>{category.staff_id}</td>
-      <td>{category.department_id}</td>
       <td>{category.description}</td>
       <td>
         <Link

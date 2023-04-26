@@ -268,19 +268,20 @@ function ImportForm({ mode }) {
     formData.append("price", importt.price);
     formData.append("amount", importt.amount);
     formData.append("description", importt.description);
+    formData.append("import_id", importt.import_id);
     formData.append("amount", importt.amount);
     formData.append("product_id", importt.product_id);
     formData.append("supplier_id", importt.supplier_id);
     if (mode === "create") {
       axiosClient
         .post(`http://localhost:3001/project/import`, formData)
-        .then((res) => navigate("/importts/view", { replace: true }))
+        .then((res) => navigate("/imports/view", { replace: true }))
         .catch((err) => console.log(err));
     } else {
-      formData.append("importt_id", importt.importt_id);
+      formData.append("import_id", importt.import_id);
       axiosClient
-        .put(`http://localhost:3001/project/import/${importt.importt_id}`, formData)
-        .then((res) => navigate("/importts/view", { replace: true }))
+        .put(`http://localhost:3001/project/import/${importt.import_id}`, formData)
+        .then((res) => navigate("/imports/view", { replace: true }))
         .catch((err) => console.log(err));
     }
   };
@@ -310,13 +311,13 @@ function ImportForm({ mode }) {
       <form onSubmit={handleSubmit}>
         {/* Title */}
         <div className={styles.formGroup}>
-          <label htmlFor="fullName" className={styles.label}>
+          <label htmlFor="title" className={styles.label}>
             Title
           </label>
           <Input
             onChange={handleOnChange}
             config={configInput(
-              "fullName",
+              "title",
               styles.formInput,
               "title",
               "text",

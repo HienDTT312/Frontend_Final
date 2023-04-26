@@ -62,8 +62,10 @@ function SupportsList({ currentPage, onCurrentPage, onPageSize }) {
       .delete(`http://localhost:3001/project/support/${deleteSupportId}`)
       .then((response) => {
         console.log(response.data);
-        navigate("/supports/view", { replace: true });
-      })
+        setIsOpen(false);
+        axiosClient.get("http://localhost:3001/project/support").then((res) => {
+          setSupports(res.data.data);
+        });      })
       .catch((err) => console.log(err));
   };
 

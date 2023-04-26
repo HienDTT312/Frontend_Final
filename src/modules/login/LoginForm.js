@@ -121,7 +121,7 @@ export default function LoginForm() {
           <div className={clsx(styles.left, "row")}>
             <div className={clsx("col lg9")}>
               <h3 className={clsx(styles.title)}>
-                Login to <strong>Project</strong>
+                Login to <strong>Bookstore</strong>
               </h3>
               <p className={clsx(styles.text)}>
                 Lorem ipsum dolor sit amet elit. Sapiente sit aut eos

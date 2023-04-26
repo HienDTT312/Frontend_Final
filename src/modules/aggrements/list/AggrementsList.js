@@ -73,6 +73,7 @@ function AggrementsList() {
       .delete(`http://localhost:3001/project/aggrement/${deleteCateId}`)
       .then((response) => {
         console.log(response.data);
+        setIsOpen(false);
         getAggrements();
       })
       .catch((err) => console.log(err));

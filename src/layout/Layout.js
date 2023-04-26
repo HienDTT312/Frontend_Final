@@ -92,7 +92,7 @@ export default function Layout() {
             </Route>
             <Route path="/suppliers">
               <Route path="update">
-                <Route path=":brandID" element={<UpdateSupplier />} />
+                <Route path=":supplierID" element={<UpdateSupplier />} />
               </Route>
               <Route path="create" element={<CreateSupplier />} />
               <Route path="view" element={<Supplier />} />
@@ -137,7 +137,7 @@ export default function Layout() {
             <Route path="/imports">
               <Route path="profile" element={<Profile />} />
               <Route path="update">
-                <Route path=":username" element={<UpdateImport />} />
+                <Route path=":importtId" element={<UpdateImport />} />
               </Route>
               <Route path="view" element={<Import />} />
               <Route path="create" element={<CreateImport />} />

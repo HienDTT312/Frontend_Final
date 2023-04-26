@@ -111,7 +111,7 @@ function ProductDetail() {
   const handleSubmitComment = (comment, statusSwitch) => {
     axiosClient
       .post(`http://localhost:3001/project/comment`, {
-        importt_id: importt.importt_id,
+        import_id: importt.import_id,
         anonymous: statusSwitch,
         comment: comment,
       })
@@ -128,7 +128,10 @@ function ProductDetail() {
       })
       .then((res) => {
         console.log(res.data);
+        setIsOpen(false);
+
         getProductComment();
+
       })
       .catch((err) => console.log(err));
   };
@@ -157,7 +160,7 @@ function ProductDetail() {
 
   async function vote(action) {
     const res = await axiosClient.post("http://localhost:3001/project/vote", {
-      importt_id: importt.importt_id,
+      import_id: importt.import_id,
       vote: action,
     });
     console.log(res.data);
@@ -197,7 +200,7 @@ function ProductDetail() {
 
   const handleClickDownloadAll = () => {
     axiosClient
-      .get(`http://localhost:3001/project/download-all/${importt.importt_id}`, { responseType: "blob"})
+      .get(`http://localhost:3001/project/download-all/${importt.import_id}`, { responseType: "blob"})
       .then((res) => {
 
         const url = window.URL.createObjectURL(new Blob([res.data]));
