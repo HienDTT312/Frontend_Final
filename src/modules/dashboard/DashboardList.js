@@ -239,7 +239,6 @@ function DashboardList() {
               <DashBoardCard
                 title={`Users`}
                 data={dataDashboard.user}
-                extraData={"Increased by 10%"}
                 icon={<AiOutlineUser />}
               />
             </div>
@@ -249,7 +248,6 @@ function DashboardList() {
               <DashBoardCard
                 title="Products"
                 data={dataDashboard.product}
-                extraData={"Increased by 10%"}
                 icon={<FaRegLightbulb />}
               />
             </div>
@@ -259,15 +257,14 @@ function DashboardList() {
               <DashBoardCard
                 title={
                   currentRole === "Admin" || currentRole === "QA Manager"
-                    ? "Departments"
+                    ? "Payment"
                     : "Pending Requests"
                 }
                 data={
                   currentRole === "Admin" || currentRole === "QA Manager"
-                    ? dataDashboard.department
+                    ? dataDashboard.payment
                     : "19"
                 }
-                extraData={"Increased by 10%"}
                 icon={<AiOutlineRise />}
               />
             </div>
