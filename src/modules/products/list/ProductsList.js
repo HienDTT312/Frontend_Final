@@ -126,7 +126,6 @@ function ProductsList() {
       key={`${product.product_id} - ${index}`}
     >
       <td>{product.title}</td>
-      <td>{product.description}</td>
       <td>{product.supplier_name}</td>
       <td>{product.brand_name}</td>
       <td>{product.category_name}</td>
