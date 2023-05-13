@@ -63,10 +63,10 @@ function ProductDetail() {
   }
 
   async function getProductComment() {
-    let res = await axiosClient.get(
-      `http://localhost:3001/project/comment/${productId}`
-    );
-    setComments(res.data.data);
+    // let res = await axiosClient.get(
+    //   `http://localhost:3001/project/comment/${productId}`
+    // );
+    // setComments(res.data.data);
   }
 
   useEffect(() => {
@@ -226,7 +226,7 @@ function ProductDetail() {
         <div className={styles.header}>
           <div className={styles.imgContainer}>
             <img
-              src={`http://localhost:3001/${product.avatar}`}
+              src={`http://localhost:3001/documents/${product.documents[0].document}`}
               alt="avtar product"
             />
           </div>
@@ -335,31 +335,6 @@ function ProductDetail() {
                     data={product.documents}
                     renderBody={renderPreview}
                   />
-                }
-              />
-              <Route
-                path="comments"
-                element={
-                  <>
-                    <Comment
-                      onClickDeleteButton={onClickDelete}
-                      handleOnSubmit={handleSubmitComment}
-                      data={comments}
-                    />
-                    <Popup
-                      isOpen={isOpen}
-                      title="Confirm Information"
-                      message="Are you sure to delete this comment?"
-                      onClose={handleClickClose}
-                      onConfirm={() =>
-                        handleClickDeleteComment(
-                          commentId,
-                          commentContent,
-                          productId
-                        )
-                      }
-                    />
-                  </>
                 }
               />
               <Route path="others" element={<Others />} />

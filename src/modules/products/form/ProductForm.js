@@ -56,15 +56,15 @@ function ProductForm({ mode }) {
     setSuppliers(res.data.data);
   }
 
-  async function getAggrements() {
-    const res = await axiosClient.get(
-      "http://localhost:3001/project/aggrement"
-    );
-    setAggrements(res.data.data);
-  }
+  // async function getAggrements() {
+  //   const res = await axiosClient.get(
+  //     "http://localhost:3001/project/aggrement"
+  //   );
+  //   setAggrements(res.data.data);
+  // }
 
   useEffect(() => {
-    getAggrements();
+    // getAggrements();
     getCategories();
     getBrands();
     getSuppliers();

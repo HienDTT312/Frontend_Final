@@ -121,6 +121,7 @@ function ImporttsList() {
       <td>{importt.import_id}</td>
       <td>{importt.description}</td>
       <td>{importt.supplier_id}</td>
+      {/* <td>{importt.category_id}</td> */}
       <td>{importt.product_id}</td>
       <td>{importt.price}</td>
       <td>{importt.amount}</td>
@@ -174,7 +175,7 @@ function ImporttsList() {
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h2>Importt List</h2>
-        <Button
+        {/* <Button
           className={styles.downloadBtn}
           type={"button"}
           buttonSize={"btnMedium"}
@@ -183,7 +184,7 @@ function ImporttsList() {
         >
           <HiDownload className={styles.downloadIcon} />
           Export All
-        </Button>
+        </Button> */}
       </div>
       <Table
         loading={false}

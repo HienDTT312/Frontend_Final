@@ -55,15 +55,15 @@ function ImportForm({ mode }) {
     setSuppliers(res.data.data);
   }
 
-  async function getAggrements() {
-    const res = await axiosClient.get(
-      "http://localhost:3001/project/aggrement"
-    );
-    setAggrements(res.data.data);
-  }
+  // async function getAggrements() {
+  //   const res = await axiosClient.get(
+  //     "http://localhost:3001/project/aggrement"
+  //   );
+  //   setAggrements(res.data.data);
+  // }
 
   useEffect(() => {
-    getAggrements();
+    // getAggrements();
     getCategories();
     getProducts();
     getSuppliers();
@@ -84,12 +84,15 @@ function ImportForm({ mode }) {
     if (mode === "update") {
       getOneImport();
     } else if (mode === "create") {
+      console.log()
       return setImport({
         title: "",
         documents: [],
         description: "",
         category_id: "",
         supplier_name: "",
+        supplier_id: "",
+        product_id: "",
         product_name: "",
       });
     }
@@ -311,23 +314,6 @@ function ImportForm({ mode }) {
       <form onSubmit={handleSubmit}>
         {/* Title */}
         <div className={styles.formGroup}>
-          <label htmlFor="title" className={styles.label}>
-            Title
-          </label>
-          <Input
-            onChange={handleOnChange}
-            config={configInput(
-              "title",
-              styles.formInput,
-              "title",
-              "text",
-              importt.title,
-              "Your Title",
-              undefined
-            )}
-          />
-        </div>
-        <div className={styles.formGroup}>
           <label htmlFor="price" className={styles.label}>
             Price
           </label>
@@ -362,29 +348,6 @@ function ImportForm({ mode }) {
           />
         </div>
         {/* Category */}
-        <div className={styles.formGroup}>
-          <label htmlFor="category" className={styles.label}>
-            Category
-          </label>
-          <Select
-            name="category_id"
-            defaultValue={importt.category_id !== "" ? importt.category_id : ""}
-            id="category"
-            onChange={handleOnChange}
-          >
-            <option value="" disabled hidden>
-              Choose your category...
-            </option>
-            {categories.map((category, index) => (
-              <option
-                key={`${category.name} ${index}`}
-                value={category.category_id}
-              >
-                {category.category_name}
-              </option>
-            ))}
-          </Select>
-        </div>
          {/* Product */}
          <div className={styles.formGroup}>
           <label htmlFor="product" className={styles.label}>
@@ -396,7 +359,7 @@ function ImportForm({ mode }) {
             id="product"
             onChange={handleOnChange}
           >
-            <option value="" disabled hidden>
+             <option value="" disabled>
               Choose your product...
             </option>
             {products.map((product, index) => (

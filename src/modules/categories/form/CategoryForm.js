@@ -20,9 +20,6 @@ function CategoryForm({ mode }) {
       alert("You cannot access this page");
       navigate("/dashboard", { replace: true });
     }
-    axiosClient
-      .get(`http://localhost:3001/project/department/`)
-      .then((res) => setDepartment(res.data.data));
     if (mode === "update") {
       axiosClient
         .get(`http://localhost:3001/project/category/${cateId}`)

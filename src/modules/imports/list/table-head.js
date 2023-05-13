@@ -4,7 +4,8 @@ function TableHead() {
       <tr>
         <th>Import ID</th>
         <th>Description</th>
-        <th>Supplier Id</th>
+        <th>Supplier ID</th>
+        {/* <th>Category ID</th> */}
         <th>Product Id</th>
         <th>Price</th>
         <th>Amount</th>

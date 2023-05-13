@@ -27,6 +27,14 @@ axiosClient.interceptors.response.use(
         localStorage.removeItem("accessToken");
         window.location.href = "/login";
         break;
+      case 500:
+        alert(error.response.data.errors[0]);
+        console.log(error.response)
+        break;
+      case 400:
+        alert(error.response.data.errors[0]);
+        console.log(error.response)
+        break;
       default:
         break;
     }

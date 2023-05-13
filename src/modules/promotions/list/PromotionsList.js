@@ -49,12 +49,6 @@ function PromotionsList() {
       setCategories(res.data.data);
     }
 
-    async function getDepartments() {
-      const res = await axiosClient.get(
-        "http://localhost:3001/project/department"
-      );
-      setDepartments(res.data.data);
-    }
 
     async function getBrands() {
       const res = await axiosClient.get("http://localhost:3001/project/brand");
@@ -62,7 +56,6 @@ function PromotionsList() {
     }
 
     getCategories();
-    getDepartments();
     getBrands();
     getPromotions();
   }, []);
@@ -182,116 +175,10 @@ function PromotionsList() {
   return (
     <div className={styles.container}>
       <div className={styles.filterContainer}>
-        <h2>Filter</h2>
-        <form onSubmit={handleOnSubmitFilter} className={styles.filterForm}>
-          <div className={styles.filterContent}>
-            <div className={styles.left}>
-              <Input
-                onChange={handleOnChange}
-                config={{
-                  name: "title",
-                  type: "text",
-                  placeholder: "Type your title",
-                  className: styles.filterInput,
-                }}
-              />
-              <Input
-                onChange={handleOnChange}
-                config={{
-                  name: "full_name",
-                  type: "text",
-                  placeholder: "Type Full Name",
-                  className: styles.filterInput,
-                }}
-              />
-            </div>
-            <div className={styles.right}>
-              <div className={styles.rightFirst}>
-                <Select
-                  name="category_id"
-                  defaultValue={""}
-                  onChange={handleOnChange}
-                  required={false}
-                >
-                  <option value="">Select category</option>
-                  {categories.map((item, index) => (
-                    <option
-                      value={item.category_id}
-                      key={`${item.name} ${index}`}
-                    >
-                      {item.category_name}
-                    </option>
-                  ))}
-                </Select>
-                <Select
-                  name="status"
-                  defaultValue={""}
-                  onChange={handleOnChange}
-                  required={false}
-                >
-                  <option value="">Select status</option>
-                  <option value="first_closure">First Closure</option>
-                  <option value="final_closure">Final Closure</option>
-                </Select>
-              </div>
-              <div className={styles.rightSecond}>
-                <Select
-                  name="department_id"
-                  defaultValue={""}
-                  required={false}
-                  onChange={handleOnChange}
-                >
-                  <option value="">Select department</option>
-                  {departments.map((item, index) => (
-                    <option
-                      value={item.department_id}
-                      key={`${item.department_name} ${index}`}
-                    >
-                      {item.department_name}
-                    </option>
-                  ))}
-                </Select>
-                <Select
-                  name="brand_id"
-                  defaultValue={""}
-                  required={false}
-                  onChange={handleOnChange}
-                >
-                  <option value="">Select brand</option>
-                  {brands.map((item, index) => (
-                    <option
-                      value={item.brand_id}
-                      key={`${item.brand_name} ${index}`}
-                    >
-                      {item.brand_name}
-                    </option>
-                  ))}
-                </Select>
-              </div>
-            </div>
-          </div>
-          <Button
-            className={styles.filterBtn}
-            type={"submit"}
-            buttonSize={"btnMedium"}
-            buttonStyle={"btnPrimarySolid"}
-          >
-            Filter
-          </Button>
-          <Button
-            className={styles.resetBtn}
-            type={"submit"}
-            buttonSize={"btnMedium"}
-            buttonStyle={"btnPrimarySolid"}
-            onClick={() => getPromotions()}
-          >
-            Update Table
-          </Button>
-        </form>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h2>Promotion List</h2>
-        <Button
+        {/* <Button
           className={styles.downloadBtn}
           type={"button"}
           buttonSize={"btnMedium"}
@@ -300,7 +187,7 @@ function PromotionsList() {
         >
           <HiDownload className={styles.downloadIcon} />
           Export All
-        </Button>
+        </Button> */}
       </div>
       <Table
         loading={false}

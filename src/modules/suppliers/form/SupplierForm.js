@@ -33,9 +33,9 @@ function SupplierForm({ mode }) {
     } else if (mode === "create") {
       setSupplier({
         supplier_name: "",
-        supplier_number: "",
+        phone_number: "",
         supplier_address: "",
-        supplier_manager: "",
+        manager: "",
         status: "",
       });
     }
@@ -75,11 +75,11 @@ function SupplierForm({ mode }) {
       return axiosClient
         .put(`http://localhost:3001/project/supplier/`, {
           supplier_name: supplier.supplier_name,
-          status: supplier.supplier_status,
+          status: supplier.status,
           supplier_id: supplier.supplier_id,
-          phone_number: supplier.supplier_number,
+          phone_number: supplier.phone_number,
           supplier_address: supplier.supplier_address,
-          manager: supplier.supplier_manager,
+          manager: supplier.manager,
         })
         .then((response) => {
           console.log(response.data);
@@ -91,10 +91,10 @@ function SupplierForm({ mode }) {
     return axiosClient
       .post(`http://localhost:3001/project/supplier`, {
         supplier_name: supplier.supplier_name,
-        status: supplier.supplier_status,
-        phone_number: supplier.supplier_number,
+        status: supplier.status,
+        phone_number: supplier.phone_number,
         supplier_address: supplier.supplier_address,
-        manager: supplier.supplier_manager,
+        manager: supplier.manager,
       })
       .then((response) => {
         console.log(response.data);
@@ -156,9 +156,9 @@ function SupplierForm({ mode }) {
           <Input
             onChange={handleOnChange}
             config={configInput(
-              "supplier_number",
+              "phone_number",
               styles.formInput,
-              "supplier_number",
+              "phone_number",
               "text",
               supplier.phone_number,
               "Your supplier number"
@@ -172,9 +172,9 @@ function SupplierForm({ mode }) {
           <Input
             onChange={handleOnChange}
             config={configInput(
-              "supplier_manager",
+              "manager",
               styles.formInput,
-              "supplier_manager",
+              "manager",
               "text",
               supplier.manager,
               "Your supplier manager's name"
@@ -188,9 +188,9 @@ function SupplierForm({ mode }) {
           <Input
             onChange={handleOnChange}
             config={configInput(
-              "supplier_status",
+              "status",
               styles.formInput,
-              "supplier_status",
+              "status",
               "text",
               supplier.status,
               "Your supplier status"

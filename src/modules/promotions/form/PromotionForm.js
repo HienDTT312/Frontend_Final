@@ -56,15 +56,15 @@ function PromotionForm({ mode }) {
     setSuppliers(res.data.data);
   }
 
-  async function getAggrements() {
-    const res = await axiosClient.get(
-      "http://localhost:3001/project/aggrement"
-    );
-    setAggrements(res.data.data);
-  }
+  // async function getAggrements() {
+  //   const res = await axiosClient.get(
+  //     "http://localhost:3001/project/aggrement"
+  //   );
+  //   setAggrements(res.data.data);
+  // }
 
   useEffect(() => {
-    getAggrements();
+    // getAggrements();
     getCategories();
     getBrands();
     getSuppliers();
@@ -266,10 +266,8 @@ function PromotionForm({ mode }) {
 
     const formData = new FormData();
     formData.append("title", promotion.title);
-    formData.append("price", promotion.price);
     formData.append("description", promotion.description);
     formData.append("discount", promotion.discount);
-    formData.append("brand_id", promotion.brand_id);
     formData.append("supplier_id", promotion.supplier_id);
     formData.append("category_id", +promotion.category_id);
     if (mode === "create") {
@@ -328,25 +326,8 @@ function PromotionForm({ mode }) {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="price" className={styles.label}>
-            Price
-          </label>
-          <Input
-            onChange={handleOnChange}
-            config={configInput(
-              "price",
-              styles.formInput,
-              "price",
-              "text",
-              promotion.price,
-              "Your price",
-              undefined
-            )}
-          />
-        </div>
-        <div className={styles.formGroup}>
           <label htmlFor="discount" className={styles.label}>
-            Amount
+            Discount
           </label>
           <Input
             onChange={handleOnChange}
@@ -386,29 +367,6 @@ function PromotionForm({ mode }) {
           </Select>
         </div>
          {/* Brand */}
-         <div className={styles.formGroup}>
-          <label htmlFor="brand" className={styles.label}>
-            Brand
-          </label>
-          <Select
-            name="brand_id"
-            defaultValue={promotion.brand_id !== "" ? promotion.brand_id : ""}
-            id="brand"
-            onChange={handleOnChange}
-          >
-            <option value="" disabled>
-              Choose your brand...
-            </option>
-            {brands.map((brand, index) => (
-              <option
-                key={`${brand.brand_id} ${index}`}
-                value={brand.brand_id}
-              >
-                {brand.brand_name}
-              </option>
-            ))}
-          </Select>
-        </div>
         {/* Brand */}
         <div className={styles.formGroup}>
           <label htmlFor="supplier" className={styles.label}>

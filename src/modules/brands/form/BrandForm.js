@@ -33,9 +33,9 @@ function BrandForm({ mode }) {
     } else if (mode === "create") {
       setBrand({
         brand_name: "",
-        brand_number: "",
+        phone_number: "",
         brand_address: "",
-        brand_manager: "",
+        manager: "",
         status: "",
       });
     }
@@ -76,10 +76,10 @@ function BrandForm({ mode }) {
         .put(`http://localhost:3001/project/brand`, {
           brand_name: brand.brand_name,
           brand_id: brand.brand_id,
-          status: brand.brand_status,
-          phone_number: brand.brand_number,
+          status: brand.status,
+          phone_number: brand.phone_number,
           brand_address: brand.brand_address,
-          manager: brand.brand_manager,
+          manager: brand.manager,
         })
         .then((response) => {
           console.log(response.data);
@@ -91,10 +91,10 @@ function BrandForm({ mode }) {
     return axiosClient
       .post(`http://localhost:3001/project/brand`, {
         brand_name: brand.brand_name,
-        status: brand.brand_status,
-        phone_number: brand.brand_number,
+        status: brand.status,
+        phone_number: brand.phone_number,
         brand_address: brand.brand_address,
-        manager: brand.brand_manager,
+        manager: brand.manager,
       })
       .then((response) => {
         console.log(response.data);
@@ -158,7 +158,7 @@ function BrandForm({ mode }) {
             config={configInput(
               "phone",
               styles.formInput,
-              "brand_number",
+              "phone_number",
               "text",
               brand.phone_number,
               "Your brand number"
@@ -174,7 +174,7 @@ function BrandForm({ mode }) {
             config={configInput(
               "manager",
               styles.formInput,
-              "brand_manager",
+              "manager",
               "text",
               brand.manager,
               "Your brand manager's name"
@@ -190,7 +190,7 @@ function BrandForm({ mode }) {
             config={configInput(
               "status",
               styles.formInput,
-              "brand_status",
+              "status",
               "text",
               brand.status,
               "Your brand status"

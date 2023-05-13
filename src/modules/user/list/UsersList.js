@@ -72,6 +72,7 @@ function UsersList({ currentPage, onCurrentPage, onPageSize }) {
       .then((response) => {
         console.log(response.data);
         getUsers();
+        setIsOpen(false);
       })
       .catch((err) => console.log(err));
   };

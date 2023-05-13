@@ -62,12 +62,12 @@ function ProductDetail() {
       : setCountDisLike(0);
   }
 
-  async function getProductComment() {
-    let res = await axiosClient.get(
-      `http://localhost:3001/project/comment/${importtId}`
-    );
-    setComments(res.data.data);
-  }
+  // async function getProductComment() {
+  //   let res = await axiosClient.get(
+  //     `http://localhost:3001/project/comment/${importtId}`
+  //   );
+  //   setComments(res.data.data);
+  // }
 
   useEffect(() => {
     async function getProduct() {
@@ -79,7 +79,7 @@ function ProductDetail() {
     }
 
     getProduct();
-    getProductComment();
+    // getProductComment();
   }, []);
 
   const handleClickClose = () => setIsOpen(false);

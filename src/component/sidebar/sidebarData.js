@@ -252,13 +252,6 @@ const SidebarQAM = [
     iconClosed: <RiArrowDownSFill />,
     iconOpened: <RiArrowUpSFill />,
   },
-  {
-    title: "Aggrement",
-    path: "/aggrements/view",
-    icon: <MdPolicy />,
-    iconClosed: <RiArrowDownSFill />,
-    iconOpened: <RiArrowUpSFill />,
-  },
 ];
 
 const SidebarQAC = [

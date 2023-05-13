@@ -112,7 +112,10 @@ function UserForm({ mode }) {
           console.log(response.data);
           navigate("/users/view", { replace: true });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          alert(err);
+          console.log(err);
+        });
     }
 
     formData.append("username", user.username);
@@ -125,13 +128,28 @@ function UserForm({ mode }) {
     formData.append("role_id", +user.role_id);
     formData.append("avatar", user.avatar);
 
-    return axiosClient
+    async function fetchData() {
+      return await axiosClient
       .post(`http://localhost:3001/project/user`, formData)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
+        if (response.data) {
+          console.log(response.data);
+        }
+        if (response.errors) {
+          alert(response.errors);
+        }
+        console.log(response);
         navigate("/users/view", { replace: true });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        // alert(err.toJSON());
+        // console.log(err);
+      });
+    }
+
+    return fetchData();
   };
 
   if (!user) {

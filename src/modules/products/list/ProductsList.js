@@ -49,12 +49,7 @@ function ProductsList() {
       setCategories(res.data.data);
     }
 
-    async function getDepartments() {
-      const res = await axiosClient.get(
-        "http://localhost:3001/project/department"
-      );
-      setDepartments(res.data.data);
-    }
+
 
     async function getBrands() {
       const res = await axiosClient.get("http://localhost:3001/project/brand");
@@ -270,7 +265,7 @@ function ProductsList() {
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h2>Product List</h2>
-        <Button
+        {/* <Button
           className={styles.downloadBtn}
           type={"button"}
           buttonSize={"btnMedium"}
@@ -279,7 +274,7 @@ function ProductsList() {
         >
           <HiDownload className={styles.downloadIcon} />
           Export All
-        </Button>
+        </Button> */}
       </div>
       <Table
         loading={false}
