@@ -151,23 +151,6 @@ const SidebarAdmin = [
     ],
   },
   {
-    title: "Aggrement",
-    path: "/aggrements",
-    icon: <MdPolicy />,
-    iconClosed: <RiArrowDownSFill />,
-    iconOpened: <RiArrowUpSFill />,
-    subNav: [
-      {
-        title: "View",
-        path: "/aggrements/view",
-      },
-      {
-        title: "Create",
-        path: "/aggrements/create",
-      },
-    ],
-  },
-  {
     title: "Support",
     path: "/supports",
     icon: <MdPolicy />,
